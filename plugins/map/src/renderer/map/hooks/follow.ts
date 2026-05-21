@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { IWorld } from "@rrox-plugins/world/shared";
+import { IWorld, IWorldEntityKey } from "@rrox-plugins/world/shared";
 import { useWorld } from "@rrox-plugins/world/renderer";
 import { MapMode } from "../types";
 import { usePrevious } from "./previous";
 
-export type FollowingData<K extends keyof IWorld = keyof IWorld> = { array: K, index: number, apply: ( data: IWorld[ K ][ number ], map: L.Map ) => void } | null;
+export type FollowingData<K extends IWorldEntityKey = IWorldEntityKey> = { array: K, index: number, apply: ( data: IWorld[ K ][ number ], map: L.Map ) => void } | null;
 
 /**
  * Hook that handles all logic related to following elements on the map

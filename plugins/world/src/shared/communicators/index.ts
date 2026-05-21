@@ -5,3 +5,5 @@ export * from './switch';
 export * from './teleport';
 export * from './world';
 export * from './storage';
+export * from './industryServerRpc';
+export * from './locomotiveCheats';

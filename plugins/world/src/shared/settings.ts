@@ -11,6 +11,10 @@ export interface IWorldSettings {
         controlSwitches: boolean;
         build: boolean;
         cheats: boolean;
+        /** Lager auffüllen (Industrie, Tender, Güterwagen); nur in der Karte gesetzt. */
+        storageCheats?: boolean;
+        /** @deprecated Forschung abgeschlossen (2026-05-21); UI entfernt, Default aus. */
+        experimentalIndustryServerRpc?: boolean;
 		controlCranes: boolean;
 		resetFramecars: boolean;
     }
@@ -57,6 +61,11 @@ const schema: SettingsSchema<IWorldSettings> = {
             cheats: {
                 type: 'boolean',
                 default: true
+            },
+
+            experimentalIndustryServerRpc: {
+                type: 'boolean',
+                default: false,
             },
 			
 			controlCranes: {

@@ -1,14 +1,42 @@
 import React, { useContext, useState } from 'react';
+import { LayerGroup } from 'react-leaflet';
 import { MapContext } from '../context';
-import { Shape, MapTooltip } from '../leaflet';
+import { Shape, MapTooltip, MapNameLabel } from '../leaflet';
+import { MapTooltipExtras } from '../components';
 import { FrameDefinitions } from '../definitions';
 import { Button } from 'antd';
 import { FrameControlsPopup, StorageInfo } from '../popups';
 import L from 'leaflet';
-import { IFrameCar, FrameCarType, EngineFrameCarType, FreightFrameCarType, TeleportCommunicator, FramecarResetCommunicator } from '@rrox-plugins/world/shared';
+import { IFrameCar, FrameCarType, EngineFrameCarType, FreightFrameCarType, ProductType, TeleportCommunicator, FramecarResetCommunicator } from '@rrox-plugins/world/shared';
 import { MapMode } from '../types';
 import { useRPC } from '@rrox/api';
 import { usePopupElements } from '../hooks';
+import { useWorld } from '@rrox-plugins/world/renderer';
+import { usePlayerName } from '../hooks';
+import { useMyLocomotive } from '../hooks/useMyLocomotive';
+import { isNearPlayer } from '../utils/distance';
+
+function frameMapLabel( data: IFrameCar, definition: { name?: string } ): string | null {
+    const num = data.number?.trim();
+    const typeName = data.type === FrameCarType.UNKNOWN ? '' : data.type.replace( /_/g, ' ' );
+    const defName = definition.name && definition.name !== 'Unknown' ? definition.name : '';
+    const short = ( defName || typeName ).replace( /<br>/gi, ' ' ).trim().slice( 0, 14 );
+    if( !num && !short )
+        return null;
+    if( num && short )
+        return `${num} · ${short}`;
+    return num || short;
+}
+
+function boilerBadgeText( boiler: NonNullable<IFrameCar[ 'boiler' ]> ): string {
+    const pressurePct = boiler.maxPressure > 0
+        ? Math.round( boiler.pressure / boiler.maxPressure * 100 )
+        : 0;
+    const waterPct = boiler.maxWaterAmount > 0
+        ? Math.round( boiler.waterAmount / boiler.maxWaterAmount * 100 )
+        : 0;
+    return `DR ${pressurePct}% · H2O ${waterPct}%`;
+}
 
 const getStrokeColor = ( brake: number ) => {
     if ( brake > 0.5 )
@@ -20,7 +48,14 @@ const getStrokeColor = ( brake: number ) => {
 };
 
 export const Frame = React.memo( function Frame( { data, index, frames }: { data: IFrameCar, index: number, frames: IFrameCar[] } ) {
-    const { utils, mode, follow, settings, preferences, currentPlayerName } = useContext( MapContext )!;
+    const { utils, mode, follow, settings, preferences } = useContext( MapContext )!;
+    const labelPrefs = preferences.labels ?? {
+        players: true,
+        locomotives: true,
+        industries: false,
+        freightCars: false,
+        boilerBadge: false,
+    };
 
     const { location, rotation, type, freight, number, name, controls } = data;
 
@@ -32,14 +67,79 @@ export const Frame = React.memo( function Frame( { data, index, frames }: { data
 
     const [ controlsVisible, setControlsVisible ] = useState( false );
     const [ storageVisible, setStorageVisible ] = useState( false );
+    const [ tenderVisible, setTenderVisible ] = useState( false );
     const [ tooltipVisible, setTooltipVisible ] = useState( false );
 
     const popupElements = usePopupElements( { frame: data, index } );
+    const world = useWorld();
+    const playerName = usePlayerName( world );
+    const player = world?.players.find( ( p ) => p.name === playerName );
+    const nearPlayer = player ? isNearPlayer( player.location, location ) : true;
+    const { bookmark, bookmarkedIndex } = useMyLocomotive();
+    const isMyLoc = bookmarkedIndex === index;
 
     const anchor = utils.scaleLocation( location );
 
+    const panExtras = (
+        <MapTooltipExtras
+            targetLocation={location}
+            onClose={() => setTooltipVisible( false )}
+            onPanToTarget={() => {
+                follow.setFollowing( {
+                    array: 'frameCars',
+                    index,
+                    apply: ( d, map ) => {
+                        const a = utils.scaleLocation( d.location );
+                        map.panTo( L.latLng( a[ 0 ], a[ 1 ] ), { animate: true, duration: 0.5 } );
+                    },
+                } );
+            }}
+            onPanToPlayer={() => {
+                const pi = world?.players.findIndex( ( p ) => p.name === playerName ) ?? 0;
+                const pl = world?.players[ pi ];
+                if( !pl )
+                    return;
+                follow.setFollowing( {
+                    array: 'players',
+                    index: pi,
+                    apply: ( d, map ) => {
+                        const a = utils.scaleLocation( d.location );
+                        map.panTo( L.latLng( a[ 0 ], a[ 1 ] ), { animate: true, duration: 0.5 } );
+                    },
+                } );
+            }}
+        />
+    );
+
+    const frameLabelText = frameMapLabel( data, definition );
+    const showFrameLabel = definition.engine
+        ? labelPrefs.locomotives
+        : labelPrefs.freightCars;
+    const mapLabels = showFrameLabel && frameLabelText ? (
+        <>
+            <MapNameLabel
+                anchor={anchor}
+                text={frameLabelText}
+                variant="frame"
+                highlight={nearPlayer}
+                compact={mode === MapMode.MINIMAP}
+                zIndexOffset={1900}
+            />
+            {labelPrefs.boilerBadge && data.boiler && definition.engine && (
+                <MapNameLabel
+                    anchor={anchor}
+                    text={boilerBadgeText( data.boiler )}
+                    variant="badge"
+                    compact={mode === MapMode.MINIMAP}
+                    zIndexOffset={1890}
+                />
+            )}
+        </>
+    ) : null;
+
     if ( definition.engine )
-        return <Shape
+        return <LayerGroup>
+        <Shape
             positions={[
                 utils.scalePoint( 0, definition.length / 2 ),
                 utils.scalePoint( 100, definition.length / 6 ),
@@ -64,6 +164,18 @@ export const Frame = React.memo( function Frame( { data, index, frames }: { data
                     setTooltipVisible( false );
                     setControlsVisible( true );
                 }}>Open Controls</Button>
+                {definition.engine && (
+                    <Button
+                        style={{ marginTop: 5 }}
+                        type={isMyLoc ? 'primary' : 'default'}
+                        onClick={() => {
+                            bookmark( index );
+                            setTooltipVisible( false );
+                        }}
+                    >
+                        {isMyLoc ? '★ Meine Lok' : 'Als Meine Lok'}
+                    </Button>
+                )}
                 <Button
                     style={{ marginTop: 5 }}
                     onClick={() => {
@@ -83,6 +195,13 @@ export const Frame = React.memo( function Frame( { data, index, frames }: { data
                 >
                     {follow.following?.array === 'frameCars' && follow.following.index === index ? 'Unfollow' : 'Follow'}
                 </Button>
+                {data.tender && <Button
+                    style={{ marginTop: 5 }}
+                    onClick={() => {
+                        setTooltipVisible( false );
+                        setTenderVisible( true );
+                    }}
+                >Show Tender</Button>}
                 {popupElements}
                 {settings.features.resetFramecars && <Button
                     style={{ marginTop: 25 }}
@@ -90,6 +209,7 @@ export const Frame = React.memo( function Frame( { data, index, frames }: { data
                         framecarReset( index );
                     }}
                 >Reset Framecar Location</Button>}
+                {panExtras}
             </MapTooltip>
             <FrameControlsPopup
                 title={`${name.replace( "<br>", "" ).toUpperCase()}${name && number ? ' - ' : ''}${number.toUpperCase() || ''}`}
@@ -104,11 +224,43 @@ export const Frame = React.memo( function Frame( { data, index, frames }: { data
                     setTooltipVisible( false );
                 }}
             />
-        </Shape>;
+            {data.tender && <StorageInfo
+                title={`${name.replace( "<br>", "" ).toUpperCase()} – Tender`}
+                parentIndex={index}
+                ownerType="framecar"
+                className={mode === MapMode.MINIMAP ? 'modal-hidden' : undefined}
+                storages={{
+                    Water: [ {
+                        types: [ ProductType.WATER ],
+                        currentAmount: data.tender.water,
+                        maxAmount: data.tender.maxWater,
+                        cranes: [],
+                        location: data.location,
+                        rotation: data.rotation,
+                    } ],
+                    Fuel: [ {
+                        types: [ ProductType.COAL ],
+                        currentAmount: data.tender.fuel,
+                        maxAmount: data.tender.maxFuel,
+                        cranes: [],
+                        location: data.location,
+                        rotation: data.rotation,
+                    } ],
+                }}
+                isVisible={tenderVisible}
+                onClose={() => {
+                    setTenderVisible( false );
+                    setTooltipVisible( false );
+                }}
+            />}
+        </Shape>
+        {mapLabels}
+        </LayerGroup>;
 
     let frameTitle = name || number ? ( name.replace( "<br>", "" ).toUpperCase() ) + ( name && number ? ' - ' : '' ) + ( number.toUpperCase() || '' ) : ( definition.name || 'Freight Car' );
 
-    return <Shape
+    return <LayerGroup>
+    <Shape
         positions={[
             utils.scalePoint( 100, definition.length / 2 ),
             utils.scalePoint( 100, -definition.length / 2 ),
@@ -148,6 +300,7 @@ export const Frame = React.memo( function Frame( { data, index, frames }: { data
                     framecarReset( index );
                 }}
             >Reset Framecar Location</Button>}
+            {panExtras}
         </MapTooltip>
         <FrameControlsPopup
             title={frameTitle}
@@ -165,6 +318,7 @@ export const Frame = React.memo( function Frame( { data, index, frames }: { data
         <StorageInfo
             title={frameTitle}
             parentIndex={index}
+            ownerType="framecar"
             className={mode === MapMode.MINIMAP ? 'modal-hidden' : undefined}
             storages={{
                 Freight: freight ? [ freight ] : []
@@ -175,5 +329,15 @@ export const Frame = React.memo( function Frame( { data, index, frames }: { data
                 setTooltipVisible( false );
             }}
         />
-    </Shape>;
+    </Shape>
+    {showFrameLabel && frameLabelText && (
+        <MapNameLabel
+            anchor={anchor}
+            text={frameLabelText}
+            variant="frame"
+            compact={mode === MapMode.MINIMAP}
+            zIndexOffset={1900}
+        />
+    )}
+    </LayerGroup>;
 } );

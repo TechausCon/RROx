@@ -134,6 +134,49 @@
 	display: none!important;
 }
 
+/* Dauerhafte Spielernamen auf der Karte (DivIcon, kein Leaflet-Tooltip) */
+.player-map-label-marker,
+.map-name-label-marker {
+	background: none !important;
+	border: none !important;
+}
+
+.player-map-label-inner {
+	display: inline-block;
+	transform: translate(-50%, calc(-100% - 18px));
+	padding: 5px 12px;
+	border: 2px solid #1a1a1a;
+	border-radius: 6px;
+	background: rgba(255, 255, 255, 0.97);
+	color: #141414;
+	font-size: 15px;
+	font-weight: 800;
+	line-height: 1.15;
+	letter-spacing: 0.04em;
+	white-space: nowrap;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+	pointer-events: none;
+	text-align: center;
+}
+
+.player-map-label-inner--self {
+	border-color: #1677ff;
+	background: #e6f4ff;
+	color: #003a8c;
+	box-shadow: 0 2px 12px rgba(22, 119, 255, 0.5);
+}
+
+.player-map-label-inner--compact {
+	font-size: 11px;
+	padding: 3px 8px;
+	transform: translate(-50%, calc(-100% - 12px));
+}
+
+.map-minimap .player-map-label-inner {
+	font-size: 10px;
+	padding: 2px 6px;
+}
+
 .frame-controls-modal {
 	width: 100%;
 

@@ -39,6 +39,14 @@ export interface IMapPreferences {
         player: string,
         spline: SplineColors,
     } & FrameCarColors,
+    /** Welche Namen dauerhaft auf der Karte angezeigt werden. */
+    labels: {
+        players: boolean,
+        locomotives: boolean,
+        industries: boolean,
+        freightCars: boolean,
+        boilerBadge: boolean,
+    },
 }
 
 const preferencesSchema: SettingsSchema<IMapPreferences> = {
@@ -72,6 +80,17 @@ const preferencesSchema: SettingsSchema<IMapPreferences> = {
             },
         },
         default: {}
+    },
+    labels: {
+        type: 'object',
+        properties: {
+            players: { type: 'boolean', default: true },
+            locomotives: { type: 'boolean', default: true },
+            industries: { type: 'boolean', default: false },
+            freightCars: { type: 'boolean', default: false },
+            boilerBadge: { type: 'boolean', default: false },
+        },
+        default: {},
     },
 
     colors: {

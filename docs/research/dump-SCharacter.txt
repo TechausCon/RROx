@@ -1,0 +1,1186 @@
+Dumping: Class arr.SCharacter
+[inject] Class arr.SCharacter
+[dll] Retrieving struct: Class arr.SCharacter
+
+Class arr.SCharacter
+  super: Class Engine.Character
+  size: 3808
+
+Members (203):
+  bDebugMode: BoolProperty @1656+1
+  bInDebugUI: BoolProperty @1656+1
+  bSkipLoadingScreen: BoolProperty @1656+1
+  bFlyMode: BoolProperty @1656+1
+  bChangeHeightInFlyMode: BoolProperty @1657+1
+  bInvisibleMode: BoolProperty @1658+1
+  bTrainStartMode: BoolProperty @1658+1
+  bHelperInfoEnabled: BoolProperty @1658+1
+  DebugTimeDilation: FloatProperty @1660+4
+  PlayerName: StrProperty @1664+16
+  LookAtGradient: StrProperty @1680+16
+  LookAtRadius: StrProperty @1696+16
+  ObjectLookedAt: ObjectProperty @1712+8 -> Class CoreUObject.Object
+  CurrentFrameHitActor: ObjectProperty @1728+8 -> Class Engine.Actor
+  PlayerPermissions: ArrayProperty @1736+16 inner=BoolProperty PlayerPermissions
+  GameSettings: ObjectProperty @1768+8 -> Class arr.GameplaySettings
+  RailsData: ObjectProperty @1776+8 -> Class arr.RailsData
+  CharacterData: ObjectProperty @1784+8 -> Class arr.CharacterData
+  ResourcesData: ObjectProperty @1792+8 -> Class arr.ResourcesData
+  InputActionsData: ObjectProperty @1800+8 -> Class arr.InputActionsData
+  TrainsData: ObjectProperty @1808+8 -> Class arr.TrainsData
+  Inventory: ObjectProperty @1816+8 -> Class arr.InventoryComponent
+  FireWoodAmount: IntProperty @1824+4
+  MaxFirewoodItems: IntProperty @1828+4
+  firewood: ObjectProperty @1832+8 -> Class arr.Item
+  PlayerController: ObjectProperty @1840+8 -> Class Engine.PlayerController
+  OldPlayerPosHeight: FloatProperty @1848+4
+  ControllerInputX: FloatProperty @1852+4
+  ControllerInputY: FloatProperty @1856+4
+  FineAdjustmentValue: FloatProperty @1860+4
+  ControllerSensitivityX: FloatProperty @1864+4
+  ControllerSensitivityY: FloatProperty @1868+4
+  OnInventoryOpened: Unknown @1872+16
+  OnMainMenuOpened: Unknown @1888+16
+  OnConstructionMenuOpened: Unknown @1904+16
+  OnConstructionMenuClosed: Unknown @1920+16
+  OnEnterConstructionMode: Unknown @1936+16
+  OnExitConstructionMode: Unknown @1952+16
+  OnLookAtAssigned: Unknown @1968+16
+  OnRailConstructionFailed: Unknown @1984+16
+  OnPropConstructionFailed: Unknown @2000+16
+  OnPlayerStatsOpened: Unknown @2016+16
+  OnLookAtPlayer: Unknown @2032+16
+  OnPlayerStatsUpdate: Unknown @2048+16
+  OnPlayerEnableCrosshair: Unknown @2064+16
+  OnPlayerDisableCrosshair: Unknown @2080+16
+  OnPlayerEnableMap: Unknown @2096+16
+  OnPlayerDisableMap: Unknown @2112+16
+  OnPlayerEnableTutorial: Unknown @2128+16
+  OnPlayerDisableTutorial: Unknown @2144+16
+  OnPlayerOpenPlayerList: Unknown @2160+16
+  OnPlayerClosePlayerList: Unknown @2176+16
+  OnPlayerSpawnedObjectToPlace: Unknown @2192+16
+  OnPlayerDestroyedTrackSpline: Unknown @2208+16
+  OnPlayerReopenTrackSplineMenu: Unknown @2224+16
+  OnOpenCompanyMenu: Unknown @2240+16
+  OnCloseCompanyMenu: Unknown @2256+16
+  OnReceiveCompanyInvitation: Unknown @2272+16
+  OnCloseCompanyInvitation: Unknown @2288+16
+  OnDebugUIActivated: Unknown @2304+16
+  OnDebugUIDeactivated: Unknown @2320+16
+  OnVehicleCameraSwitchedToNewCar: Unknown @2336+16
+  SpawnedSplineTrack: ObjectProperty @2352+8 -> Class arr.SplineTrack
+  LookAtSplineTrack: ObjectProperty @2360+8 -> Class arr.SplineTrack
+  RotationAnglePlacement: FloatProperty @2368+4
+  TrackLengthPlayer: FloatProperty @2372+4
+  TrackRadiusPlayer: FloatProperty @2376+4
+  TrackInclinePlayer: FloatProperty @2380+4
+  OldSplineTrackLocation: StructProperty @2384+24 -> ScriptStruct CoreUObject.Vector
+  OldSplineTrackRotation: StructProperty @2408+24 -> ScriptStruct CoreUObject.Rotator
+  SplineTrackLastPointOldLocation: StructProperty @2432+24 -> ScriptStruct CoreUObject.Vector
+  PlacementGrid: FloatProperty @2456+4
+  bLayStraightTrack: BoolProperty @2460+1
+  bTrackCopyMode: BoolProperty @2461+1
+  bOverrideSplineRotation: BoolProperty @2462+1
+  PlacementGridCount: IntProperty @2464+4
+  PreviousSplineColorOption: IntProperty @2468+4
+  InvertXInput: FloatProperty @2472+4
+  InvertYInput: FloatProperty @2476+4
+  RaycastSplineTrack: ObjectProperty @2480+8 -> Class arr.SplineTrack
+  CopySplineTrack: ObjectProperty @2488+8 -> Class arr.SplineTrack
+  TemplateSplineTrack: ObjectProperty @2496+8 -> Class arr.SplineTrack
+  RailPointSphereComp: ObjectProperty @2504+8 -> Class Engine.SphereComponent
+  PlacementGridCountToGrid: MapProperty @2512+80 key=IntProperty PlacementGridCountToGrid_Key value=FloatProperty PlacementGridCountToGrid
+  bFirstSplinePointPlaced: BoolProperty @2592+1
+  bTrackSplineUseRadius: BoolProperty @2592+1
+  bIsInRerailMode: BoolProperty @2592+1
+  OnFirstSplinePointPlaced: Unknown @2600+16
+  OnSplineTrackRadiusChanged: Unknown @2616+16
+  SplineMiddlePoint: StructProperty @2632+24 -> ScriptStruct CoreUObject.Vector
+  OldSplineMiddlePoint: StructProperty @2656+24 -> ScriptStruct CoreUObject.Vector
+  SplineMiddlePointRotation: StructProperty @2680+24 -> ScriptStruct CoreUObject.Rotator
+  OnRerailCarAttachedChanged: Unknown @2712+16
+  AttachedFrame: ObjectProperty @2728+8 -> Class arr.Framecar
+  ReRailBoxComp: ObjectProperty @2736+8 -> Class Engine.BoxComponent
+  PlayerXp: IntProperty @2744+4
+  PlayerMoney: FloatProperty @2748+4
+  PlayerIconColor: StructProperty @2752+4 -> ScriptStruct CoreUObject.Color
+  PlayerLevel: IntProperty @2756+4
+  PlayerWidgetComponent: ObjectProperty @2760+8 -> Class UMG.WidgetComponent
+  DemolishFilter: StrProperty @2768+16
+  OnPlayerJoined: Unknown @2784+16
+  OnPlayerLeft: Unknown @2800+16
+  OnGameSaved: Unknown @2816+16
+  OnGameLoaded: Unknown @2832+16
+  CurrentBoss: StrProperty @2848+16
+  CurrentBossID: StrProperty @2864+16
+  bIsInCompany: BoolProperty @2880+1
+  bHasCoalShovel: BoolProperty @2880+1
+  bHasLamp: BoolProperty @2880+1
+  debugplayerchar: ClassProperty @2888+8 -> Class arr.SCharacter
+  PropActorBP: ClassProperty @2896+8 -> Class arr.PropActor
+  SpawnedPropActor: ObjectProperty @2904+8 -> Class arr.PropActor
+  ProfanityTable: ObjectProperty @2912+8 -> Class Engine.DataTable
+  RunSpeed: FloatProperty @3000+4
+  WalkSpeed: FloatProperty @3004+4
+  achievementDeltaMoney: FloatProperty @3016+4
+  bIsBoss: BoolProperty @3020+1
+  bCompanyMenuOpen: BoolProperty @3020+1
+  bCompanyInvitationOpen: BoolProperty @3020+1
+  CurrentCompany: StrProperty @3024+16
+  RequestingCompany: StrProperty @3040+16
+  RequestingBoss: StrProperty @3056+16
+  ConnectedPlayers: ArrayProperty @3072+16 inner=ObjectProperty ConnectedPlayers -> Class Engine.PlayerState
+  ConnectedPlayersIds: ArrayProperty @3088+16 inner=StrProperty ConnectedPlayersIds
+  bIsFirstPerson: BoolProperty @3108+1
+  bDoesJump: BoolProperty @3108+1
+  bIsRunning: BoolProperty @3108+1
+  bHasFirewoodEquiped: BoolProperty @3108+1
+  bHasHatEquiped: BoolProperty @3108+1
+  LocalSpeedValueForward_FP: FloatProperty @3112+4
+  LocalSpeedValueRight_FP: FloatProperty @3116+4
+  LocalSpeedForward_old: FloatProperty @3120+4
+  LocalSpeedRight_old: FloatProperty @3124+4
+  oldInputX: FloatProperty @3136+4
+  CameraComp: ObjectProperty @3144+8 -> Class Engine.CameraComponent
+  SpringArmComp: ObjectProperty @3152+8 -> Class Engine.SpringArmComponent
+  SkeletalPawnMesh: ObjectProperty @3160+8 -> Class Engine.SkeletalMeshComponent
+  MeshComp_Hat: ObjectProperty @3168+8 -> Class Engine.StaticMeshComponent
+  MeshComp_Firewood: ObjectProperty @3176+8 -> Class Engine.StaticMeshComponent
+  MeshComp_ArrowAnimated: ObjectProperty @3184+8 -> Class Engine.SkeletalMeshComponent
+  MeshComp_Link: ObjectProperty @3192+8 -> Class Engine.StaticMeshComponent
+  MeshComp_Demolish: ObjectProperty @3200+8 -> Class Engine.StaticMeshComponent
+  MeshComp_Fell: ObjectProperty @3208+8 -> Class Engine.StaticMeshComponent
+  PlayerNameText: ObjectProperty @3216+8 -> Class Engine.TextRenderComponent
+  CurrentEquippedItem: ObjectProperty @3224+8 -> Class arr.Item
+  FirewoodClass: ClassProperty @3232+8 -> Class arr.PhysicsObject
+  coalshovelmeshcomp: ObjectProperty @3240+8 -> Class Engine.SkeletalMeshComponent
+  coal_shovel_animation: ObjectProperty @3248+8 -> Class Engine.AnimationAsset
+  coal_shovel_throw_animation: ObjectProperty @3256+8 -> Class Engine.AnimationAsset
+  soundbase_shovelscoop1: ObjectProperty @3272+8 -> Class Engine.SoundBase
+  soundbase_shovelscoop2: ObjectProperty @3280+8 -> Class Engine.SoundBase
+  soundbase_shovelthrow1: ObjectProperty @3288+8 -> Class Engine.SoundBase
+  soundbase_shovelthrow2: ObjectProperty @3296+8 -> Class Engine.SoundBase
+  LampMeshComp: ObjectProperty @3304+8 -> Class Engine.SkeletalMeshComponent
+  PointLightLamp: ObjectProperty @3312+8 -> Class Engine.PointLightComponent
+  ParticleFireLamp: ObjectProperty @3320+8 -> Class Engine.ParticleSystemComponent
+  SoundBasePlayerLamp: ObjectProperty @3328+8 -> Class Engine.SoundBase
+  bCanDemolish: BoolProperty @3336+1
+  LookAtTurntable: ObjectProperty @3344+8 -> Class arr.Turntable
+  SpawnedTurntable: ObjectProperty @3352+8 -> Class arr.Turntable
+  SpawnedTurntableId: NameProperty @3360+8
+  SpawnedObject: ObjectProperty @3368+8 -> Class Engine.Actor
+  SpawnedObjectName: NameProperty @3376+8
+  SpawnTestBox: ClassProperty @3408+8 -> Class Engine.Actor
+  bIsInConstructionMode: BoolProperty @3416+1
+  bIsInConstructionMenu: BoolProperty @3416+1
+  bIsInDemolishMode: BoolProperty @3416+1
+  bIsInFellMode: BoolProperty @3416+1
+  bIsInMapMode: BoolProperty @3416+1
+  bIsInMiniMapMode: BoolProperty @3417+1
+  bIsInChatMode: BoolProperty @3418+1
+  bIsInTutorialMode: BoolProperty @3418+1
+  bRerailSplineRotate: BoolProperty @3418+1
+  SwitchPitch: FloatProperty @3452+4
+  SplineSwitchRotationPoint: IntProperty @3456+4
+  OnSplineTrackCopyStarted: Unknown @3464+16
+  LastLookedAtPlayer: ObjectProperty @3488+8 -> Class arr.SCharacter
+  bCanLinkEndPoint: BoolProperty @3544+1
+  bIsHittingGround: BoolProperty @3544+1
+  bPlayerInteraction2: BoolProperty @3544+1
+  PossessedLocomotive: ObjectProperty @3552+8 -> Class arr.Framecar
+  OnInteractionStart: Unknown @3560+16
+  OnInteractionEnd: Unknown @3576+16
+  objectInteractingWith: InterfaceProperty @3600+16 -> Class arr.InteractableComponent
+  ParticleCreateSplinePoint: ObjectProperty @3616+8 -> Class Engine.ParticleSystem
+  PlaceSound: ObjectProperty @3624+8 -> Class Engine.SoundCue
+  FloatingCamPawn: ClassProperty @3632+8 -> Class Engine.Pawn
+  TimerHandleUnlockPlayerCanInteract: StructProperty @3640+8 -> ScriptStruct Engine.TimerHandle
+  FrameCarTrainArray: ArrayProperty @3648+16 inner=ObjectProperty FrameCarTrainArray -> Class arr.Framecar
+  TrainCarIndex: IntProperty @3664+4
+  RayCastBoiler: ObjectProperty @3672+8 -> Class arr.Boiler
+  bRerailLocationValid: BoolProperty @3688+1
+  bCanUseFirewoodHitbox: BoolProperty @3689+1
+  RedMaterial: ObjectProperty @3696+8 -> Class Engine.MaterialInterface
+  GreenMaterial: ObjectProperty @3704+8 -> Class Engine.MaterialInterface
+  OnPlayerDemoTimerFinished: Unknown @3720+16
+  OnPlayerRestartDemo: Unknown @3736+16
+  bIsConstructionMenuLocked: BoolProperty @3752+1
+  MapMarkerActor: ClassProperty @3760+8 -> Class arr.MapMarker
+  historySystem: ObjectProperty @3768+8 -> Class arr.ObjectActionHistorySystem
+  pendingObjectActions: ArrayProperty @3784+16 inner=ObjectProperty pendingObjectActions -> Class arr.ObjectAction
+  pendingObjectAction: ObjectProperty @3800+8 -> Class arr.ObjectAction
+
+Functions (224):
+
+  Function arr.SCharacter.ValidateRerailLocation
+    cpp: ValidateRerailLocation, size: 0, flags: 0x4020401
+    (no params)
+
+  Function arr.SCharacter.UseItem
+    cpp: UseItem, size: 8, flags: 0x4020401
+    - ObjectProperty Item -> Class arr.Item [Parm]
+
+  Function arr.SCharacter.UpdateSplineTrackViaRadius
+    cpp: UpdateSplineTrackViaRadius, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.UpdatePlayerLevel
+    cpp: UpdatePlayerLevel, size: 0, flags: 0x4020401
+    (no params)
+
+  Function arr.SCharacter.UpdateInvertInput
+    cpp: UpdateInvertInput, size: 0, flags: 0x4020401
+    (no params)
+
+  Function arr.SCharacter.UnloadVehicleFromUI
+    cpp: UnloadVehicleFromUI, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.Undo
+    cpp: Undo, size: 0, flags: 0x40401
+    (no params)
+
+  Function arr.SCharacter.TrackRadiusPlus
+    cpp: TrackRadiusPlus, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.TrackRadiusMinus
+    cpp: TrackRadiusMinus, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.TrackInclineSplinePlus
+    cpp: TrackInclineSplinePlus, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.TrackInclineSplineMinus
+    cpp: TrackInclineSplineMinus, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.ToggleTutorial
+    cpp: ToggleTutorial, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.ToggleTrackSplineRadius
+    cpp: ToggleTrackSplineRadius, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.TogglePlayerLamp
+    cpp: TogglePlayerLamp, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.ToggleHelperInfo
+    cpp: ToggleHelperInfo, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.ToggleDebugUI
+    cpp: ToggleDebugUI, size: 0, flags: 0x4020601
+    (no params)
+
+  Function arr.SCharacter.ToggleDebugMode
+    cpp: ToggleDebugMode, size: 0, flags: 0x4020601
+    (no params)
+
+  Function arr.SCharacter.ToggleConstructionMenu
+    cpp: ToggleConstructionMenu, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.StopLayStraightTrack
+    cpp: StopLayStraightTrack, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.StartSplineConstructionMode
+    cpp: StartSplineConstructionMode, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.StartLayStraightTrack
+    cpp: StartLayStraightTrack, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.StartDemoCountDown
+    cpp: StartDemoCountDown, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.SpawnTurntable
+    cpp: SpawnTurntable, size: 8, flags: 0x4480401
+    - NameProperty turntabletype [Parm,Out]
+
+  Function arr.SCharacter.SpawnSplineTrackOfType
+    cpp: SpawnSplineTrackOfType, size: 8, flags: 0x4480401
+    - NameProperty splineTrackType [Parm,Out]
+
+  Function arr.SCharacter.SpawnSplineTrack
+    cpp: SpawnSplineTrack, size: 16, flags: 0x4080401
+    - StrProperty splineTrackType [Parm]
+
+  Function arr.SCharacter.SpawnProp
+    cpp: SpawnProp, size: 128, flags: 0x4c20401
+    - StructProperty propTransform -> ScriptStruct CoreUObject.Transform [Parm,Out]
+    - NameProperty propID [Parm,Out]
+    - TextProperty propText [Parm,Out]
+
+  Function arr.SCharacter.SpawnPlaceableIndustry
+    cpp: SpawnPlaceableIndustry, size: 8, flags: 0x4480401
+    - NameProperty industryId [Parm,Out]
+
+  Function arr.SCharacter.SetSplineTrackCopyMode
+    cpp: SetSplineTrackCopyMode, size: 1, flags: 0x4080401
+    - BoolProperty State [Parm]
+
+  Function arr.SCharacter.SetPlayerXP
+    cpp: SetPlayerXP, size: 4, flags: 0x4020401
+    - IntProperty xp [Parm]
+
+  Function arr.SCharacter.SetPlayerName
+    cpp: SetPlayerName, size: 16, flags: 0x4020401
+    - StrProperty newPlayerName [Parm]
+
+  Function arr.SCharacter.SetPlayerMoney
+    cpp: SetPlayerMoney, size: 4, flags: 0x4020401
+    - FloatProperty money [Parm]
+
+  Function arr.SCharacter.SetPlayerLamp
+    cpp: SetPlayerLamp, size: 1, flags: 0x4080401
+    - BoolProperty State [Parm]
+
+  Function arr.SCharacter.SetPawnVisibility
+    cpp: SetPawnVisibility, size: 1, flags: 0x4020401
+    - BoolProperty State [Parm]
+
+  Function arr.SCharacter.SetNewPlayerLocation
+    cpp: SetNewPlayerLocation, size: 24, flags: 0x4c80401
+    - StructProperty NewLocation -> ScriptStruct CoreUObject.Vector [Parm,Out]
+
+  Function arr.SCharacter.SetNamePlateVisibility
+    cpp: SetNamePlateVisibility, size: 1, flags: 0x4020401
+    - BoolProperty Visible [Parm]
+
+  Function arr.SCharacter.SetMovement
+    cpp: SetMovement, size: 1, flags: 0x4080401
+    - BoolProperty State [Parm]
+
+  Function arr.SCharacter.SetMotionBlurAmount
+    cpp: SetMotionBlurAmount, size: 4, flags: 0x4020401
+    - FloatProperty amount [Parm]
+
+  Function arr.SCharacter.SetMaxFrameRate
+    cpp: SetMaxFrameRate, size: 4, flags: 0x4020401
+    - FloatProperty fps [Parm]
+
+  Function arr.SCharacter.SetLookAtPlayer
+    cpp: SetLookAtPlayer, size: 8, flags: 0x20401
+    - ObjectProperty PlayerPawn -> Class arr.SCharacter [Parm]
+
+  Function arr.SCharacter.SetIsInRerailMode_Internal
+    cpp: SetIsInRerailMode_Internal, size: 1, flags: 0x8080c00
+    - BoolProperty Mode [Parm]
+
+  Function arr.SCharacter.SetIsInRerailMode
+    cpp: SetIsInRerailMode, size: 1, flags: 0x4020401
+    - BoolProperty Mode [Parm]
+
+  Function arr.SCharacter.SetHatVisibility
+    cpp: SetHatVisibility, size: 1, flags: 0x4020401
+    - BoolProperty State [Parm]
+
+  Function arr.SCharacter.SetHasCoalShovel
+    cpp: SetHasCoalShovel, size: 1, flags: 0x4080401
+    - BoolProperty State [Parm]
+
+  Function arr.SCharacter.SetFirewoodEquiped
+    cpp: SetFirewoodEquiped, size: 1, flags: 0x4080401
+    - BoolProperty bIsEquiped [Parm]
+
+  Function arr.SCharacter.SetFieldOfView
+    cpp: SetFieldOfView, size: 4, flags: 0x4020401
+    - FloatProperty Angle [Parm]
+
+  Function arr.SCharacter.SetFellMode_Internal
+    cpp: SetFellMode_Internal, size: 1, flags: 0x8080c00
+    - BoolProperty Mode [Parm]
+
+  Function arr.SCharacter.SetFellMode
+    cpp: SetFellMode, size: 1, flags: 0x4020401
+    - BoolProperty Mode [Parm]
+
+  Function arr.SCharacter.SetDemolishMode_Internal
+    cpp: SetDemolishMode_Internal, size: 1, flags: 0x8080c00
+    - BoolProperty Mode [Parm]
+
+  Function arr.SCharacter.SetDemolishMode
+    cpp: SetDemolishMode, size: 1, flags: 0x4020401
+    - BoolProperty Mode [Parm]
+
+  Function arr.SCharacter.SetDemolishFilter
+    cpp: SetDemolishFilter, size: 16, flags: 0x4020401
+    - StrProperty Type [Parm]
+
+  Function arr.SCharacter.SetCameraState
+    cpp: SetCameraState, size: 4, flags: 0x4020401
+    - IntProperty State [Parm]
+
+  Function arr.SCharacter.ServerVegetationManagerRemove
+    cpp: ServerVegetationManagerRemove, size: 24, flags: 0x280cc0
+    - StrProperty ISMCName [Parm]
+    - IntProperty Index [Parm]
+
+  Function arr.SCharacter.ServerUseFreight
+    cpp: ServerUseFreight, size: 32, flags: 0x280c40
+    - ObjectProperty Freight -> Class arr.Freight [Parm]
+    - EnumProperty side -> Enum arr.EUnloadSide [Parm]
+    - StrProperty playerUnloaderName [Parm]
+
+  Function arr.SCharacter.ServerUpdateFramecarTrainArray
+    cpp: ServerUpdateFramecarTrainArray, size: 16, flags: 0x4280cc0
+    - ObjectProperty playerChar -> Class arr.SCharacter [Parm]
+    - ObjectProperty lookAtCar -> Class arr.Framecar [Parm]
+
+  Function arr.SCharacter.ServerToggleTrainStartMode
+    cpp: ServerToggleTrainStartMode, size: 8, flags: 0x4220cc0
+    - ObjectProperty MyChar -> Class arr.SCharacter [Parm]
+
+  Function arr.SCharacter.ServerToggleTrainReverser
+    cpp: ServerToggleTrainReverser, size: 8, flags: 0x4220cc0
+    - ObjectProperty MyChar -> Class arr.SCharacter [Parm]
+
+  Function arr.SCharacter.ServerToggleTrainBrake
+    cpp: ServerToggleTrainBrake, size: 8, flags: 0x4220cc0
+    - ObjectProperty MyChar -> Class arr.SCharacter [Parm]
+
+  Function arr.SCharacter.ServerToggleStartTrain
+    cpp: ServerToggleStartTrain, size: 8, flags: 0x4220cc0
+    - ObjectProperty MyChar -> Class arr.SCharacter [Parm]
+
+  Function arr.SCharacter.ServerToggleInvisibleMode
+    cpp: ServerToggleInvisibleMode, size: 8, flags: 0x4220cc0
+    - ObjectProperty MyChar -> Class arr.SCharacter [Parm]
+
+  Function arr.SCharacter.ServerToggleFreightLoading
+    cpp: ServerToggleFreightLoading, size: 8, flags: 0x4280cc0
+    - ObjectProperty interactiveActor -> Class Engine.Actor [Parm]
+
+  Function arr.SCharacter.ServerToggleFlyMode
+    cpp: ServerToggleFlyMode, size: 8, flags: 0x4220cc0
+    - ObjectProperty MyChar -> Class arr.SCharacter [Parm]
+
+  Function arr.SCharacter.ServerToggleDebugMode
+    cpp: ServerToggleDebugMode, size: 8, flags: 0x4220cc0
+    - ObjectProperty MyChar -> Class arr.SCharacter [Parm]
+
+  Function arr.SCharacter.ServerSwitchCameraToNextVehicle
+    cpp: ServerSwitchCameraToNextVehicle, size: 16, flags: 0x4280cc0
+    - ObjectProperty playerChar -> Class arr.SCharacter [Parm]
+    - BoolProperty Forward [Parm]
+
+  Function arr.SCharacter.ServerStopRun
+    cpp: ServerStopRun, size: 0, flags: 0x80280cc0
+    (no params)
+
+  Function arr.SCharacter.ServerStartTrain
+    cpp: ServerStartTrain, size: 16, flags: 0x4220cc0
+    - ObjectProperty Framecar -> Class arr.Framecar [Parm]
+    - BoolProperty Start [Parm]
+
+  Function arr.SCharacter.ServerSpawnTurntable
+    cpp: ServerSpawnTurntable, size: 56, flags: 0x80a80cc0
+    - StructProperty Pos -> ScriptStruct CoreUObject.Vector [Parm]
+    - StructProperty rot -> ScriptStruct CoreUObject.Rotator [Parm]
+    - NameProperty turntableId [Parm]
+
+  Function arr.SCharacter.ServerSpawnMapMarker
+    cpp: ServerSpawnMapMarker, size: 112, flags: 0x4a80cc0
+    - StructProperty markerTransform -> ScriptStruct CoreUObject.Transform [Parm]
+    - ObjectProperty Player -> Class arr.SCharacter [Parm]
+
+  Function arr.SCharacter.ServerSpawnIndustry
+    cpp: ServerSpawnIndustry, size: 56, flags: 0x80a80cc0
+    - StructProperty Pos -> ScriptStruct CoreUObject.Vector [Parm]
+    - StructProperty rot -> ScriptStruct CoreUObject.Rotator [Parm]
+    - NameProperty industryId [Parm]
+
+  Function arr.SCharacter.ServerSpawnFireWood
+    cpp: ServerSpawnFireWood, size: 24, flags: 0x80a80cc0
+    - StructProperty Location -> ScriptStruct CoreUObject.Vector [Parm]
+
+  Function arr.SCharacter.ServerSpawnFinishedSplineTrack
+    cpp: ServerSpawnFinishedSplineTrack, size: 176, flags: 0x80a80cc0
+    - NameProperty splineTrackType [Parm]
+    - IntProperty PaintStyle [Parm]
+    - StructProperty Location -> ScriptStruct Engine.Vector_NetQuantize [Parm]
+    - StructProperty Rotation -> ScriptStruct CoreUObject.Rotator [Parm]
+    - StructProperty startpoint -> ScriptStruct Engine.Vector_NetQuantize [Parm]
+    - StructProperty endpoint -> ScriptStruct Engine.Vector_NetQuantize [Parm]
+    - StructProperty StartTangent -> ScriptStruct Engine.Vector_NetQuantize [Parm]
+    - StructProperty EndTangent -> ScriptStruct Engine.Vector_NetQuantize [Parm]
+    - ObjectProperty startSpline -> Class arr.SplineTrack [Parm]
+    - ObjectProperty endSpline -> Class arr.SplineTrack [Parm]
+
+  Function arr.SCharacter.ServerSpawnCharacterModel
+    cpp: ServerSpawnCharacterModel, size: 48, flags: 0x4a20cc0
+    - StructProperty Location -> ScriptStruct CoreUObject.Vector [Parm]
+    - StructProperty Rotation -> ScriptStruct CoreUObject.Rotator [Parm]
+
+  Function arr.SCharacter.ServerSetWalkingMode
+    cpp: ServerSetWalkingMode, size: 16, flags: 0x280cc0
+    - ObjectProperty pawnToUpdate -> Class Engine.Pawn [Parm]
+    - BoolProperty State [Parm]
+
+  Function arr.SCharacter.ServerSetUseRotYaw
+    cpp: ServerSetUseRotYaw, size: 1, flags: 0x80280cc0
+    - BoolProperty bRot [Parm]
+
+  Function arr.SCharacter.ServerSetupFramecarTrainArray
+    cpp: ServerSetupFramecarTrainArray, size: 16, flags: 0x4280cc0
+    - ObjectProperty playerChar -> Class arr.SCharacter [Parm]
+    - ObjectProperty lookAtCar -> Class arr.Framecar [Parm]
+
+  Function arr.SCharacter.ServerSetTrainStartMode
+    cpp: ServerSetTrainStartMode, size: 16, flags: 0x4220cc0
+    - ObjectProperty MyChar -> Class arr.SCharacter [Parm]
+    - BoolProperty State [Parm]
+
+  Function arr.SCharacter.ServerSetTrainBrake
+    cpp: ServerSetTrainBrake, size: 16, flags: 0x4220cc0
+    - ObjectProperty frameToUpdate -> Class arr.Framecar [Parm]
+    - BoolProperty Start [Parm]
+
+  Function arr.SCharacter.ServerSetRotToView
+    cpp: ServerSetRotToView, size: 1, flags: 0x80280cc0
+    - BoolProperty bSetRot [Parm]
+
+  Function arr.SCharacter.ServerSetPlayerXP
+    cpp: ServerSetPlayerXP, size: 4, flags: 0x80280cc0
+    - IntProperty xpValue [Parm]
+
+  Function arr.SCharacter.ServerSetPlayerPermissions
+    cpp: ServerSetPlayerPermissions, size: 24, flags: 0x4280cc0
+    - ObjectProperty playerChar -> Class arr.SCharacter [Parm]
+    - ArrayProperty perms inner=BoolProperty perms [Parm]
+
+  Function arr.SCharacter.ServerSetPlayerName
+    cpp: ServerSetPlayerName, size: 24, flags: 0x80280cc0
+    - StrProperty newPlayerName [Parm]
+    - ObjectProperty characterToUpdate -> Class arr.SCharacter [Parm]
+
+  Function arr.SCharacter.ServerSetPlayerMoney
+    cpp: ServerSetPlayerMoney, size: 4, flags: 0x80280cc0
+    - FloatProperty moneyValue [Parm]
+
+  Function arr.SCharacter.ServerSetPlayerLamp
+    cpp: ServerSetPlayerLamp, size: 16, flags: 0x280c40
+    - ObjectProperty MyChar -> Class arr.SCharacter [Parm]
+    - BoolProperty State [Parm]
+
+  Function arr.SCharacter.ServerSetNewPlayerLocation
+    cpp: ServerSetNewPlayerLocation, size: 32, flags: 0xc80401
+    - ObjectProperty MyChar -> Class arr.SCharacter [Parm]
+    - StructProperty NewLocation -> ScriptStruct CoreUObject.Vector [Parm,Out]
+
+  Function arr.SCharacter.ServerSetJump
+    cpp: ServerSetJump, size: 1, flags: 0x80280cc0
+    - BoolProperty bSetJump [Parm]
+
+  Function arr.SCharacter.ServerSetInvisibleMode
+    cpp: ServerSetInvisibleMode, size: 16, flags: 0x4220cc0
+    - ObjectProperty MyChar -> Class arr.SCharacter [Parm]
+    - BoolProperty State [Parm]
+
+  Function arr.SCharacter.ServerSetInputY
+    cpp: ServerSetInputY, size: 4, flags: 0x80280cc0
+    - FloatProperty Right [Parm]
+
+  Function arr.SCharacter.ServerSetInputX
+    cpp: ServerSetInputX, size: 4, flags: 0x80280cc0
+    - FloatProperty Forward [Parm]
+
+  Function arr.SCharacter.ServerSetHasCoalShovel
+    cpp: ServerSetHasCoalShovel, size: 16, flags: 0x280c40
+    - ObjectProperty MyChar -> Class arr.SCharacter [Parm]
+    - BoolProperty State [Parm]
+
+  Function arr.SCharacter.ServerSetFramecarWhistle
+    cpp: ServerSetFramecarWhistle, size: 16, flags: 0x4220cc0
+    - ObjectProperty Framecar -> Class arr.Framecar [Parm]
+    - FloatProperty whistlePercent [Parm]
+
+  Function arr.SCharacter.ServerSetFlyMode
+    cpp: ServerSetFlyMode, size: 16, flags: 0x4220cc0
+    - ObjectProperty MyChar -> Class arr.SCharacter [Parm]
+    - BoolProperty State [Parm]
+
+  Function arr.SCharacter.ServerSetFirewoodEquiped
+    cpp: ServerSetFirewoodEquiped, size: 1, flags: 0x4280c40
+    - BoolProperty bIsEquiped [Parm]
+
+  Function arr.SCharacter.ServerSetDrawDistance
+    cpp: ServerSetDrawDistance, size: 4, flags: 0x4220cc0
+    - FloatProperty distanceMeters [Parm]
+
+  Function arr.SCharacter.ServerSetDebugTimeDilation
+    cpp: ServerSetDebugTimeDilation, size: 4, flags: 0x4220cc0
+    - FloatProperty TimeDilation [Parm]
+
+  Function arr.SCharacter.ServerSetCustomPlayerIconColor
+    cpp: ServerSetCustomPlayerIconColor, size: 16, flags: 0x4a80cc0
+    - ObjectProperty playerChar -> Class arr.SCharacter [Parm]
+    - StructProperty newColor -> ScriptStruct CoreUObject.Color [Parm]
+
+  Function arr.SCharacter.ServerSetCurrentClientBoss
+    cpp: ServerSetCurrentClientBoss, size: 40, flags: 0x280cc0
+    - ObjectProperty Pawn -> Class arr.SCharacter [Parm]
+    - StrProperty bossName [Parm]
+    - StrProperty bossId [Parm]
+
+  Function arr.SCharacter.ServerRun
+    cpp: ServerRun, size: 0, flags: 0x80280cc0
+    (no params)
+
+  Function arr.SCharacter.ServerRespawnPlayer
+    cpp: ServerRespawnPlayer, size: 8, flags: 0x80280cc0
+    - ObjectProperty MyController -> Class arr.ARRPlayerController [Parm]
+
+  Function arr.SCharacter.ServerRespawnMyPawn
+    cpp: ServerRespawnMyPawn, size: 16, flags: 0x80280cc0
+    - StrProperty playerNameToRespawn [Parm]
+
+  Function arr.SCharacter.ServerResetFramecarTrainArray
+    cpp: ServerResetFramecarTrainArray, size: 8, flags: 0x4280cc0
+    - ObjectProperty playerChar -> Class arr.SCharacter [Parm]
+
+  Function arr.SCharacter.ServerRemoveTenderFuel
+    cpp: ServerRemoveTenderFuel, size: 16, flags: 0x280c40
+    - ObjectProperty Tender -> Class arr.Tender [Parm]
+    - FloatProperty fuelAmount [Parm]
+    - EnumProperty fueltype -> Enum arr.EFuelType [Parm]
+
+  Function arr.SCharacter.ServerRemoveFreight
+    cpp: ServerRemoveFreight, size: 16, flags: 0x280cc0
+    - ObjectProperty Storage -> Class arr.Storage [Parm]
+    - IntProperty amount [Parm]
+
+  Function arr.SCharacter.ServerRemoveCarFromList
+    cpp: ServerRemoveCarFromList, size: 8, flags: 0x4220cc0
+    - ObjectProperty car -> Class arr.Framecar [Parm]
+
+  Function arr.SCharacter.ServerReleaseFrameCar
+    cpp: ServerReleaseFrameCar, size: 8, flags: 0x280cc0
+    - ObjectProperty car -> Class arr.Framecar [Parm]
+
+  Function arr.SCharacter.ServerPostChatMessage
+    cpp: ServerPostChatMessage, size: 32, flags: 0x220cc0
+    - StrProperty plName [Parm]
+    - StrProperty Msg [Parm]
+
+  Function arr.SCharacter.ServerPossessFloatingCameraPawn
+    cpp: ServerPossessFloatingCameraPawn, size: 8, flags: 0x4280cc0
+    - ObjectProperty MyChar -> Class arr.SCharacter [Parm]
+
+  Function arr.SCharacter.ServerPlaceProp
+    cpp: ServerPlaceProp, size: 128, flags: 0x4a20cc0
+    - StructProperty propTransform -> ScriptStruct CoreUObject.Transform [Parm]
+    - NameProperty propID [Parm]
+    - TextProperty propText [Parm]
+
+  Function arr.SCharacter.ServerMoveMapMarker
+    cpp: ServerMoveMapMarker, size: 32, flags: 0x4a80cc0
+    - ObjectProperty marker -> Class arr.MapMarker [Parm]
+    - StructProperty NewLocation -> ScriptStruct CoreUObject.Vector [Parm]
+
+  Function arr.SCharacter.ServerMoveFrameCarToLocation
+    cpp: ServerMoveFrameCarToLocation, size: 64, flags: 0xa80c40
+    - ObjectProperty playerChar -> Class arr.SCharacter [Parm]
+    - ObjectProperty car -> Class arr.Framecar [Parm]
+    - StructProperty NewLocation -> ScriptStruct CoreUObject.Vector [Parm]
+    - StructProperty NewRotation -> ScriptStruct CoreUObject.Rotator [Parm]
+
+  Function arr.SCharacter.ServerMoveFrameCar
+    cpp: ServerMoveFrameCar, size: 56, flags: 0xa80c40
+    - ObjectProperty car -> Class arr.Framecar [Parm]
+    - StructProperty NewLocation -> ScriptStruct CoreUObject.Vector [Parm]
+    - StructProperty NewRotation -> ScriptStruct CoreUObject.Rotator [Parm]
+
+  Function arr.SCharacter.ServerLoadPlayerData
+    cpp: ServerLoadPlayerData, size: 8, flags: 0x80280cc0
+    - ObjectProperty playerStateToLoad -> Class Engine.PlayerState [Parm]
+
+  Function arr.SCharacter.ServerIncreaseSplineTrackSwitchState
+    cpp: ServerIncreaseSplineTrackSwitchState, size: 8, flags: 0x4280cc0
+    - ObjectProperty SplineTrackSwitch -> Class arr.SplineTrack [Parm]
+
+  Function arr.SCharacter.ServerExitVehicle
+    cpp: ServerExitVehicle, size: 8, flags: 0x220cc0
+    - ObjectProperty desiredVehicle -> Class arr.Framecar [Parm]
+
+  Function arr.SCharacter.ServerExecuteInteractionWithObject
+    cpp: ServerExecuteInteractionWithObject, size: 32, flags: 0x220c40
+    - ObjectProperty objectInteractingWith -> Class CoreUObject.Object [Parm]
+    - StructProperty Parameters -> ScriptStruct arr.InteractableActionParameters [Parm]
+
+  Function arr.SCharacter.ServerEnterVehicle
+    cpp: ServerEnterVehicle, size: 16, flags: 0x280cc0
+    - ObjectProperty MyChar -> Class arr.SCharacter [Parm]
+    - ObjectProperty desiredVehicle -> Class arr.Framecar [Parm]
+
+  Function arr.SCharacter.ServerDestroySplineTrack
+    cpp: ServerDestroySplineTrack, size: 8, flags: 0x280cc0
+    - ObjectProperty splineTrackToDestroy -> Class arr.SplineTrack [Parm]
+
+  Function arr.SCharacter.ServerDestroyProp
+    cpp: ServerDestroyProp, size: 8, flags: 0x4220cc0
+    - ObjectProperty propActorObject -> Class arr.PropActor [Parm]
+
+  Function arr.SCharacter.ServerDestroyObject
+    cpp: ServerDestroyObject, size: 8, flags: 0x80280cc0
+    - ObjectProperty objectToDestroy -> Class Engine.Actor [Parm]
+
+  Function arr.SCharacter.ServerDestroyCharacterModel
+    cpp: ServerDestroyCharacterModel, size: 8, flags: 0x4220cc0
+    - ObjectProperty charmodel -> Class arr.SCharacter [Parm]
+
+  Function arr.SCharacter.ServerDestroyAnyActor
+    cpp: ServerDestroyAnyActor, size: 8, flags: 0x4280cc0
+    - ObjectProperty Actor -> Class Engine.Actor [Parm]
+
+  Function arr.SCharacter.ServerChangeTenderFuel
+    cpp: ServerChangeTenderFuel, size: 16, flags: 0x280c40
+    - ObjectProperty Tender -> Class arr.Tender [Parm]
+    - FloatProperty amount [Parm]
+
+  Function arr.SCharacter.ServerChangePlayerXP
+    cpp: ServerChangePlayerXP, size: 24, flags: 0x80280cc0
+    - StrProperty playerNameToUpdate [Parm]
+    - IntProperty additionalXp [Parm]
+
+  Function arr.SCharacter.ServerChangePlayerMoney
+    cpp: ServerChangePlayerMoney, size: 24, flags: 0x84280cc0
+    - StrProperty playerNameToUpdate [Parm]
+    - FloatProperty deltaMoney [Parm]
+
+  Function arr.SCharacter.ServerAssignPlayerIconColor
+    cpp: ServerAssignPlayerIconColor, size: 8, flags: 0x4280cc0
+    - ObjectProperty playerChar -> Class arr.SCharacter [Parm]
+
+  Function arr.SCharacter.ServerAddItem
+    cpp: ServerAddItem, size: 16, flags: 0x80280cc0
+    - ObjectProperty MyInventory -> Class arr.InventoryComponent [Parm]
+    - ObjectProperty MyItem -> Class arr.Item [Parm]
+
+  Function arr.SCharacter.ServerAddBoilerFuel
+    cpp: ServerAddBoilerFuel, size: 16, flags: 0x280cc0
+    - ObjectProperty Boiler -> Class arr.Boiler [Parm]
+    - FloatProperty amount [Parm]
+
+  Function arr.SCharacter.RotateTrackPlus
+    cpp: RotateTrackPlus, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.RotateTrackMinus
+    cpp: RotateTrackMinus, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.RotateSplineTrack
+    cpp: RotateSplineTrack, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.RotateObjectRight
+    cpp: RotateObjectRight, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.RotateObjectLeft
+    cpp: RotateObjectLeft, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.RestartDemo
+    cpp: RestartDemo, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.Respawn
+    cpp: Respawn, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.ResetTrainArray
+    cpp: ResetTrainArray, size: 0, flags: 0x4020401
+    (no params)
+
+  Function arr.SCharacter.ResetPlayerCameraToPlayer
+    cpp: ResetPlayerCameraToPlayer, size: 0, flags: 0x4020401
+    (no params)
+
+  Function arr.SCharacter.ReRailVehicle
+    cpp: ReRailVehicle, size: 0, flags: 0x4020401
+    (no params)
+
+  Function arr.SCharacter.ReopenSplineTrackMenu
+    cpp: ReopenSplineTrackMenu, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.RemoveVegetation
+    cpp: RemoveVegetation, size: 0, flags: 0x80401
+    (no params)
+
+  Function arr.SCharacter.RemoveAllMessagesFromChatLog
+    cpp: RemoveAllMessagesFromChatLog, size: 0, flags: 0xc020c00
+    (no params)
+
+  Function arr.SCharacter.ReleaseFrameCar
+    cpp: ReleaseFrameCar, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.Redo
+    cpp: Redo, size: 0, flags: 0x40401
+    (no params)
+
+  Function arr.SCharacter.PostChatMessage
+    cpp: PostChatMessage, size: 16, flags: 0x4020401
+    - StrProperty Msg [Parm]
+
+  Function arr.SCharacter.PlayerSetCrossHair
+    cpp: PlayerSetCrossHair, size: 1, flags: 0x4020401
+    - BoolProperty State [Parm]
+
+  Function arr.SCharacter.PlaceSplineTrackPoint
+    cpp: PlaceSplineTrackPoint, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.PlaceObject
+    cpp: PlaceObject, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.PlaceFunctionRail
+    cpp: PlaceFunctionRail, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.OwnInteractableObject
+    cpp: OwnInteractableObject, size: 8, flags: 0x4020401
+    - ObjectProperty objectToInteract -> Class CoreUObject.Object [Parm]
+
+  Function arr.SCharacter.OpenPlayerStats
+    cpp: OpenPlayerStats, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.OpenInventory
+    cpp: OpenInventory, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.OpenConstructionMenu
+    cpp: OpenConstructionMenu, size: 0, flags: 0x4080401
+    (no params)
+
+  DelegateFunction arr.SCharacter.OnSplineTrackRadiusChanged__DelegateSignature
+    cpp: OnSplineTrackRadiusChanged__DelegateSignature, size: 1, flags: 0x130000
+    - BoolProperty bIsSplineTrackingRadius [Parm]
+
+  DelegateFunction arr.SCharacter.OnSplineTrackCopyStart__DelegateSignature
+    cpp: OnSplineTrackCopyStart__DelegateSignature, size: 0, flags: 0x130000
+    (no params)
+
+  DelegateFunction arr.SCharacter.OnRerailModeChanged__DelegateSignature
+    cpp: OnRerailModeChanged__DelegateSignature, size: 8, flags: 0x130000
+    - ObjectProperty Framecar -> Class arr.Framecar [Parm]
+
+  Function arr.SCharacter.OnRep_UpdateVehicleCamera
+    cpp: OnRep_UpdateVehicleCamera, size: 0, flags: 0x80401
+    (no params)
+
+  Function arr.SCharacter.OnRep_UpdatePlayerPermissions
+    cpp: OnRep_UpdatePlayerPermissions, size: 0, flags: 0x4020401
+    (no params)
+
+  Function arr.SCharacter.OnRep_UpdatePlayerLamp
+    cpp: OnRep_UpdatePlayerLamp, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.OnRep_UpdatePlayerFlyMode
+    cpp: OnRep_UpdatePlayerFlyMode, size: 0, flags: 0x4020401
+    (no params)
+
+  Function arr.SCharacter.OnRep_UpdatePlayerDebugMode
+    cpp: OnRep_UpdatePlayerDebugMode, size: 0, flags: 0x4020401
+    (no params)
+
+  Function arr.SCharacter.OnRep_UpdatePlayerCoalShovel
+    cpp: OnRep_UpdatePlayerCoalShovel, size: 0, flags: 0x4080401
+    (no params)
+
+  DelegateFunction arr.SCharacter.OnRailConstructionFailed__DelegateSignature
+    cpp: OnRailConstructionFailed__DelegateSignature, size: 16, flags: 0x130000
+    - StrProperty Reason [Parm]
+
+  DelegateFunction arr.SCharacter.OnPropConstructionFailed__DelegateSignature
+    cpp: OnPropConstructionFailed__DelegateSignature, size: 16, flags: 0x130000
+    - StrProperty Reason [Parm]
+
+  DelegateFunction arr.SCharacter.OnPlayerConnectionChanged__DelegateSignature
+    cpp: OnPlayerConnectionChanged__DelegateSignature, size: 8, flags: 0x130000
+    - ObjectProperty PlayerController -> Class Engine.Controller [Parm]
+
+  DelegateFunction arr.SCharacter.OnLookingAtNewObjectDelegate__DelegateSignature
+    cpp: OnLookingAtNewObjectDelegate__DelegateSignature, size: 16, flags: 0x130000
+    - ObjectProperty LookedAtObj -> Class CoreUObject.Object [Parm]
+    - ClassProperty LinkedHelperWidget -> Class arr.HelperWidget [Parm]
+
+  DelegateFunction arr.SCharacter.OnInteractionUpdateDelegate__DelegateSignature
+    cpp: OnInteractionUpdateDelegate__DelegateSignature, size: 16, flags: 0x130000
+    - InterfaceProperty InteractingObject -> Class arr.InteractableComponent [Parm]
+
+  DelegateFunction arr.SCharacter.OnFirstSplinePointPlaced__DelegateSignature
+    cpp: OnFirstSplinePointPlaced__DelegateSignature, size: 0, flags: 0x130000
+    (no params)
+
+  Function arr.SCharacter.MoveSplineTrackCopy
+    cpp: MoveSplineTrackCopy, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.MoveSplineTrack
+    cpp: MoveSplineTrack, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.MoveLastSplineTrackPoint
+    cpp: MoveLastSplineTrackPoint, size: 1, flags: 0x4080401
+    - BoolProperty checkGrid [Parm]
+
+  Function arr.SCharacter.MoveFrameCar
+    cpp: MoveFrameCar, size: 48, flags: 0x4c80401
+    - StructProperty frameCarLocation -> ScriptStruct CoreUObject.Vector [Parm,Out]
+    - StructProperty frameCarRotation -> ScriptStruct CoreUObject.Rotator [Parm,Out]
+
+  Function arr.SCharacter.LoadVehicleFromUI
+    cpp: LoadVehicleFromUI, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.LoadProfanityList
+    cpp: LoadProfanityList, size: 0, flags: 0x4020401
+    (no params)
+
+  Function arr.SCharacter.LoadPlayerData
+    cpp: LoadPlayerData, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.LeaveCompany
+    cpp: LeaveCompany, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.JoinCompany
+    cpp: JoinCompany, size: 32, flags: 0x4080401
+    - StrProperty chairman [Parm]
+    - StrProperty chairmanId [Parm]
+
+  Function arr.SCharacter.IsUsingAbility
+    cpp: IsUsingAbility, size: 1, flags: 0x54020401
+    - BoolProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.IsInteractingWithObject
+    cpp: IsInteractingWithObject, size: 1, flags: 0x54080401
+    - BoolProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.IsInPlayerCompany
+    cpp: IsInPlayerCompany, size: 24, flags: 0x54080401
+    - StrProperty chairmanId [Parm]
+    - BoolProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.InitializeHistorySystem
+    cpp: InitializeHistorySystem, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.IncreaseDemoCountDown
+    cpp: IncreaseDemoCountDown, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.HideCoalShovel
+    cpp: HideCoalShovel, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.GetPlayerXpProgress
+    cpp: GetPlayerXpProgress, size: 4, flags: 0x54020401
+    - FloatProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.GetPlayerXP
+    cpp: GetPlayerXP, size: 4, flags: 0x54020401
+    - IntProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.GetPlayerPermissionsAsString
+    cpp: GetPlayerPermissionsAsString, size: 16, flags: 0x54020401
+    - StrProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.GetPlayerPermissions
+    cpp: GetPlayerPermissions, size: 16, flags: 0x4020401
+    - ArrayProperty ReturnValue inner=BoolProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.GetPlayerName
+    cpp: GetPlayerName, size: 16, flags: 0x54020401
+    - StrProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.GetPlayerMoney
+    cpp: GetPlayerMoney, size: 4, flags: 0x54020401
+    - FloatProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.GetPlayerLevel
+    cpp: GetPlayerLevel, size: 4, flags: 0x54020401
+    - IntProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.GetNumberOfSpawnedIndustry
+    cpp: GetNumberOfSpawnedIndustry, size: 48, flags: 0x54480401
+    - SoftClassProperty IndustryClass -> Class arr.Industry [Parm,Out]
+    - IntProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.GetIndustryData
+    cpp: GetIndustryData, size: 248, flags: 0x54480401
+    - NameProperty industryId [Parm,Out]
+    - StructProperty ReturnValue -> ScriptStruct arr.IndustryPermanentData [Parm,Out,Return]
+
+  Function arr.SCharacter.GetCurrentLvlStartXp
+    cpp: GetCurrentLvlStartXp, size: 4, flags: 0x54020401
+    - IntProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.GetCurrentLvlEndXp
+    cpp: GetCurrentLvlEndXp, size: 4, flags: 0x54020401
+    - IntProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.GetCameraViewState
+    cpp: GetCameraViewState, size: 4, flags: 0x54020401
+    - IntProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.GetAttachedFrameName
+    cpp: GetAttachedFrameName, size: 24, flags: 0x54020401
+    - TextProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.FinalizeSplineTrackCopy
+    cpp: FinalizeSplineTrackCopy, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.FilterProfanity
+    cpp: FilterProfanity, size: 32, flags: 0x4020401
+    - StrProperty InputText [Parm]
+    - StrProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.EndSplineTrackConstruction
+    cpp: EndSplineTrackConstruction, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.EndDemolishMode
+    cpp: EndDemolishMode, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.EndDemoBuild
+    cpp: EndDemoBuild, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.EndConstructionMode
+    cpp: EndConstructionMode, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.DoRayCast
+    cpp: DoRayCast, size: 0, flags: 0x80401
+    (no params)
+
+  Function arr.SCharacter.DisableAbilities
+    cpp: DisableAbilities, size: 0, flags: 0x4020401
+    (no params)
+
+  Function arr.SCharacter.DestroySplineTrack
+    cpp: DestroySplineTrack, size: 8, flags: 0x4080401
+    - ObjectProperty splineTrackToDestroy -> Class arr.SplineTrack [Parm]
+
+  Function arr.SCharacter.DestroySpawnedSplineTrack
+    cpp: DestroySpawnedSplineTrack, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.DestroyProp
+    cpp: DestroyProp, size: 0, flags: 0x20401
+    (no params)
+
+  Function arr.SCharacter.DestroyOwnMapMarker
+    cpp: DestroyOwnMapMarker, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.DestroyObject
+    cpp: DestroyObject, size: 8, flags: 0x4082401
+    - ObjectProperty Object -> Class CoreUObject.Object [Parm]
+
+  Function arr.SCharacter.CreateSplineTrackCopy
+    cpp: CreateSplineTrackCopy, size: 8, flags: 0x4080401
+    - ObjectProperty originalSplineTrack -> Class arr.SplineTrack [Parm]
+
+  Function arr.SCharacter.CloseConstructionMenu
+    cpp: CloseConstructionMenu, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.ClientTrackAchievements
+    cpp: ClientTrackAchievements, size: 24, flags: 0x1020cc0
+    - StrProperty achId [Parm]
+    - FloatProperty achProgress [Parm]
+
+  Function arr.SCharacter.ClientFinishedSpawningTrack
+    cpp: ClientFinishedSpawningTrack, size: 24, flags: 0x20401
+    - ObjectProperty spawnedTrack -> Class arr.SplineTrack [Parm]
+    - StrProperty Reason [Parm]
+
+  Function arr.SCharacter.ClientFinishedSpawningProp
+    cpp: ClientFinishedSpawningProp, size: 24, flags: 0x20401
+    - ObjectProperty spawnedProp -> Class arr.PropActor [Parm]
+    - StrProperty Reason [Parm]
+
+  Function arr.SCharacter.CheckSpawnedTrackOverlap
+    cpp: CheckSpawnedTrackOverlap, size: 24, flags: 0x80401
+    - ObjectProperty spawnedTrack -> Class arr.SplineTrack [Parm]
+    - StrProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.CheckSpawnedPropOverlap
+    cpp: CheckSpawnedPropOverlap, size: 24, flags: 0x20401
+    - ObjectProperty spawnedProp -> Class arr.PropActor [Parm]
+    - StrProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.CheckIfLocationIsEmpty
+    cpp: CheckIfLocationIsEmpty, size: 80, flags: 0x54c80401
+    - StructProperty WorldLocation -> ScriptStruct CoreUObject.Vector [Parm,Out]
+    - StructProperty worldRotation -> ScriptStruct CoreUObject.Rotator [Parm,Out]
+    - StructProperty testBoxScale -> ScriptStruct CoreUObject.Vector [Parm,Out]
+    - BoolProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.ChangePlayerXP
+    cpp: ChangePlayerXP, size: 4, flags: 0x4020401
+    - IntProperty additionalXp [Parm]
+
+  Function arr.SCharacter.ChangePlayerMoney
+    cpp: ChangePlayerMoney, size: 4, flags: 0x4020401
+    - FloatProperty deltaMoney [Parm]
+
+  Function arr.SCharacter.CastMyPlayerController
+    cpp: CastMyPlayerController, size: 0, flags: 0x4020401
+    (no params)
+
+  Function arr.SCharacter.CanPlayerSpawnIndustryId
+    cpp: CanPlayerSpawnIndustryId, size: 12, flags: 0x54480401
+    - NameProperty industryId [Parm,Out]
+    - BoolProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.CanPlayerSpawnIndustry
+    cpp: CanPlayerSpawnIndustry, size: 248, flags: 0x54480401
+    - StructProperty IndustryData -> ScriptStruct arr.IndustryPermanentData [Parm,Out]
+    - BoolProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.CanPlayerDo
+    cpp: CanPlayerDo, size: 12, flags: 0x4420401
+    - NameProperty permissionName [Parm,Out]
+    - BoolProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.SCharacter.AttachPlayerCameraToVehicle
+    cpp: AttachPlayerCameraToVehicle, size: 8, flags: 0x4080401
+    - ObjectProperty Vehicle -> Class arr.Framecar [Parm]
+
+  Function arr.SCharacter.AdjustGrid
+    cpp: AdjustGrid, size: 0, flags: 0x4080401
+    (no params)
+
+  Function arr.SCharacter.AdjustCamera
+    cpp: AdjustCamera, size: 0, flags: 0x4020401
+    (no params)
+
+  Function arr.SCharacter.AddMessageToChatLog
+    cpp: AddMessageToChatLog, size: 32, flags: 0xc020c00
+    - StrProperty latestAuthor [Parm]
+    - StrProperty latestMsg [Parm]
+
+  Function arr.SCharacter.AbortSplineTrackCopy
+    cpp: AbortSplineTrackCopy, size: 0, flags: 0x4080401
+    (no params)

@@ -10,3 +10,5 @@ export * from './scalingWeight';
 export * from './settings';
 export * from './style';
 export * from './useAutoHide';
+export * from './useMyLocomotive';
+export * from './useLocomotiveAlerts';

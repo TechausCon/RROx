@@ -78,6 +78,8 @@ export class Astorage extends AActor {
      */
     @Property.Object( "Mychute4", () => Achute )
     public Mychute4: Achute;
-	
-    
+
+    @Property.Function( "Function arr.Storage.AddFreight", [ [] ] )
+    public AddFreight: ( amount: int32 ) => Promise<void>;
+
 }

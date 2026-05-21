@@ -2,24 +2,27 @@ import { Avatar, Button, List } from 'antd';
 import { ControlOutlined, AimOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
 import { IndustryDefinitions } from '../map/definitions';
-import { IIndustry, ProductType } from '@rrox-plugins/world/shared';
+import { IIndustry, IndustryType, ProductType } from '@rrox-plugins/world/shared';
 import { ProductDefinitions } from '../map/definitions';
 
 export function IndustryList( {
 	data,
 	onLocate
 }: {
-	data: { index: number, industry: IIndustry }[],
+	data: { index: number, industry: IIndustry }[] | undefined,
 	onLocate: ( index: number ) => void,
 } ) {
 
 	const [ expandedIndustries, setExpandedIndustries ] = useState( new Set<number>() );
+	const items = data ?? [];
 
 	return <List
 		itemLayout="horizontal"
-		dataSource={data}
+		dataSource={items}
 		renderItem={( { industry, index } ) => {
-			const definition = IndustryDefinitions[ industry.type ];
+			const definition = IndustryDefinitions[ industry.type ] ?? IndustryDefinitions[ IndustryType.UNKNOWN ];
+			if( !definition )
+				return null;
 
 			let actions = [];
 

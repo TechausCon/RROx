@@ -1,0 +1,210 @@
+Dumping: Class arr.Storage
+[inject] Class arr.Storage
+[dll] Retrieving struct: Class arr.Storage
+
+Class arr.Storage
+  super: Class Engine.Actor
+  size: 1824
+
+Members (139):
+  RootMesh: ObjectProperty @664+8 -> Class Engine.StaticMeshComponent
+  storagetype: StrProperty @672+16
+  HoldableFreightTypes: ArrayProperty @688+16 inner=EnumProperty HoldableFreightTypes -> Enum arr.EFreightType
+  bUnlimitedStorage: BoolProperty @704+1
+  MaxItemsNum: FloatProperty @708+4
+  MinItemsNum: FloatProperty @712+4
+  CurrentItemsNum: FloatProperty @716+4
+  StorageFillRate: FloatProperty @720+4
+  ItemFactor: FloatProperty @724+4
+  FreightStartScale: StructProperty @728+24 -> ScriptStruct CoreUObject.Vector
+  crane1: ObjectProperty @752+8 -> Class Engine.ChildActorComponent
+  Mycrane1: ObjectProperty @760+8 -> Class arr.Crane
+  crane2: ObjectProperty @768+8 -> Class Engine.ChildActorComponent
+  Mycrane2: ObjectProperty @776+8 -> Class arr.Crane
+  crane3: ObjectProperty @784+8 -> Class Engine.ChildActorComponent
+  Mycrane3: ObjectProperty @792+8 -> Class arr.Crane
+  chute1: ObjectProperty @800+8 -> Class Engine.ChildActorComponent
+  Mychute1: ObjectProperty @808+8 -> Class arr.Chute
+  chute2: ObjectProperty @816+8 -> Class Engine.ChildActorComponent
+  Mychute2: ObjectProperty @824+8 -> Class arr.Chute
+  chute3: ObjectProperty @832+8 -> Class Engine.ChildActorComponent
+  Mychute3: ObjectProperty @840+8 -> Class arr.Chute
+  chute4: ObjectProperty @848+8 -> Class Engine.ChildActorComponent
+  Mychute4: ObjectProperty @856+8 -> Class arr.Chute
+  handvalve1: ObjectProperty @864+8 -> Class Engine.ChildActorComponent
+  Myhandvalve1: ObjectProperty @872+8 -> Class arr.HandValve
+  handvalve2: ObjectProperty @880+8 -> Class Engine.ChildActorComponent
+  Myhandvalve2: ObjectProperty @888+8 -> Class arr.HandValve
+  handvalve3: ObjectProperty @896+8 -> Class Engine.ChildActorComponent
+  Myhandvalve3: ObjectProperty @904+8 -> Class arr.HandValve
+  handvalve4: ObjectProperty @912+8 -> Class Engine.ChildActorComponent
+  Myhandvalve4: ObjectProperty @920+8 -> Class arr.HandValve
+  handvalve5: ObjectProperty @928+8 -> Class Engine.ChildActorComponent
+  Myhandvalve5: ObjectProperty @936+8 -> Class arr.HandValve
+  FreightReceiverComp: ObjectProperty @968+8 -> Class Engine.ChildActorComponent
+  FreightReceiver: ObjectProperty @976+8 -> Class arr.FreightReceiver
+  InteractiveHitboxComp: ObjectProperty @984+8 -> Class Engine.ChildActorComponent
+  InteractiveHitbox: ObjectProperty @992+8 -> Class arr.InteractiveHitbox
+  FireWoodActors: ArrayProperty @1000+16 inner=ObjectProperty FireWoodActors -> Class Engine.StaticMeshComponent
+  firewoodactor1: ObjectProperty @1016+8 -> Class Engine.StaticMeshComponent
+  firewoodactor2: ObjectProperty @1024+8 -> Class Engine.StaticMeshComponent
+  firewoodactor3: ObjectProperty @1032+8 -> Class Engine.StaticMeshComponent
+  firewoodactor4: ObjectProperty @1040+8 -> Class Engine.StaticMeshComponent
+  firewoodactor5: ObjectProperty @1048+8 -> Class Engine.StaticMeshComponent
+  firewoodactor6: ObjectProperty @1056+8 -> Class Engine.StaticMeshComponent
+  firewoodactor7: ObjectProperty @1064+8 -> Class Engine.StaticMeshComponent
+  firewoodactor8: ObjectProperty @1072+8 -> Class Engine.StaticMeshComponent
+  firewoodactor9: ObjectProperty @1080+8 -> Class Engine.StaticMeshComponent
+  firewoodactor10: ObjectProperty @1088+8 -> Class Engine.StaticMeshComponent
+  firewoodactor11: ObjectProperty @1096+8 -> Class Engine.StaticMeshComponent
+  firewoodactor12: ObjectProperty @1104+8 -> Class Engine.StaticMeshComponent
+  firewoodactor13: ObjectProperty @1112+8 -> Class Engine.StaticMeshComponent
+  firewoodactor14: ObjectProperty @1120+8 -> Class Engine.StaticMeshComponent
+  firewoodactor15: ObjectProperty @1128+8 -> Class Engine.StaticMeshComponent
+  firewoodactor16: ObjectProperty @1136+8 -> Class Engine.StaticMeshComponent
+  firewoodactor17: ObjectProperty @1144+8 -> Class Engine.StaticMeshComponent
+  firewoodactor18: ObjectProperty @1152+8 -> Class Engine.StaticMeshComponent
+  firewoodactor19: ObjectProperty @1160+8 -> Class Engine.StaticMeshComponent
+  firewoodactor20: ObjectProperty @1168+8 -> Class Engine.StaticMeshComponent
+  firewoodactor21: ObjectProperty @1176+8 -> Class Engine.StaticMeshComponent
+  firewoodactor22: ObjectProperty @1184+8 -> Class Engine.StaticMeshComponent
+  firewoodactor23: ObjectProperty @1192+8 -> Class Engine.StaticMeshComponent
+  firewoodactor24: ObjectProperty @1200+8 -> Class Engine.StaticMeshComponent
+  firewoodactor25: ObjectProperty @1208+8 -> Class Engine.StaticMeshComponent
+  firewoodactor26: ObjectProperty @1216+8 -> Class Engine.StaticMeshComponent
+  firewoodactor27: ObjectProperty @1224+8 -> Class Engine.StaticMeshComponent
+  firewoodactor28: ObjectProperty @1232+8 -> Class Engine.StaticMeshComponent
+  firewoodactor29: ObjectProperty @1240+8 -> Class Engine.StaticMeshComponent
+  firewoodactor30: ObjectProperty @1248+8 -> Class Engine.StaticMeshComponent
+  firewoodactor31: ObjectProperty @1256+8 -> Class Engine.StaticMeshComponent
+  firewoodactor32: ObjectProperty @1264+8 -> Class Engine.StaticMeshComponent
+  firewoodactor33: ObjectProperty @1272+8 -> Class Engine.StaticMeshComponent
+  firewoodactor34: ObjectProperty @1280+8 -> Class Engine.StaticMeshComponent
+  firewoodactor35: ObjectProperty @1288+8 -> Class Engine.StaticMeshComponent
+  firewoodactor36: ObjectProperty @1296+8 -> Class Engine.StaticMeshComponent
+  firewoodactor37: ObjectProperty @1304+8 -> Class Engine.StaticMeshComponent
+  firewoodactor38: ObjectProperty @1312+8 -> Class Engine.StaticMeshComponent
+  firewoodactor39: ObjectProperty @1320+8 -> Class Engine.StaticMeshComponent
+  firewoodactor40: ObjectProperty @1328+8 -> Class Engine.StaticMeshComponent
+  firewoodactor41: ObjectProperty @1336+8 -> Class Engine.StaticMeshComponent
+  firewoodactor42: ObjectProperty @1344+8 -> Class Engine.StaticMeshComponent
+  firewoodactor43: ObjectProperty @1352+8 -> Class Engine.StaticMeshComponent
+  firewoodactor44: ObjectProperty @1360+8 -> Class Engine.StaticMeshComponent
+  firewoodactor45: ObjectProperty @1368+8 -> Class Engine.StaticMeshComponent
+  firewoodactor46: ObjectProperty @1376+8 -> Class Engine.StaticMeshComponent
+  firewoodactor47: ObjectProperty @1384+8 -> Class Engine.StaticMeshComponent
+  firewoodactor48: ObjectProperty @1392+8 -> Class Engine.StaticMeshComponent
+  firewoodactor49: ObjectProperty @1400+8 -> Class Engine.StaticMeshComponent
+  firewoodactor50: ObjectProperty @1408+8 -> Class Engine.StaticMeshComponent
+  firewoodactor51: ObjectProperty @1416+8 -> Class Engine.StaticMeshComponent
+  firewoodactor52: ObjectProperty @1424+8 -> Class Engine.StaticMeshComponent
+  firewoodactor53: ObjectProperty @1432+8 -> Class Engine.StaticMeshComponent
+  firewoodactor54: ObjectProperty @1440+8 -> Class Engine.StaticMeshComponent
+  firewoodactor55: ObjectProperty @1448+8 -> Class Engine.StaticMeshComponent
+  firewoodactor56: ObjectProperty @1456+8 -> Class Engine.StaticMeshComponent
+  firewoodactor57: ObjectProperty @1464+8 -> Class Engine.StaticMeshComponent
+  firewoodactor58: ObjectProperty @1472+8 -> Class Engine.StaticMeshComponent
+  firewoodactor59: ObjectProperty @1480+8 -> Class Engine.StaticMeshComponent
+  firewoodactor60: ObjectProperty @1488+8 -> Class Engine.StaticMeshComponent
+  firewoodactor61: ObjectProperty @1496+8 -> Class Engine.StaticMeshComponent
+  firewoodactor62: ObjectProperty @1504+8 -> Class Engine.StaticMeshComponent
+  firewoodactor63: ObjectProperty @1512+8 -> Class Engine.StaticMeshComponent
+  firewoodactor64: ObjectProperty @1520+8 -> Class Engine.StaticMeshComponent
+  firewoodactor65: ObjectProperty @1528+8 -> Class Engine.StaticMeshComponent
+  firewoodactor66: ObjectProperty @1536+8 -> Class Engine.StaticMeshComponent
+  firewoodactor67: ObjectProperty @1544+8 -> Class Engine.StaticMeshComponent
+  firewoodactor68: ObjectProperty @1552+8 -> Class Engine.StaticMeshComponent
+  firewoodactor69: ObjectProperty @1560+8 -> Class Engine.StaticMeshComponent
+  firewoodactor70: ObjectProperty @1568+8 -> Class Engine.StaticMeshComponent
+  firewoodactor71: ObjectProperty @1576+8 -> Class Engine.StaticMeshComponent
+  firewoodactor72: ObjectProperty @1584+8 -> Class Engine.StaticMeshComponent
+  firewoodactor73: ObjectProperty @1592+8 -> Class Engine.StaticMeshComponent
+  firewoodactor74: ObjectProperty @1600+8 -> Class Engine.StaticMeshComponent
+  firewoodactor75: ObjectProperty @1608+8 -> Class Engine.StaticMeshComponent
+  firewoodactor76: ObjectProperty @1616+8 -> Class Engine.StaticMeshComponent
+  firewoodactor77: ObjectProperty @1624+8 -> Class Engine.StaticMeshComponent
+  firewoodactor78: ObjectProperty @1632+8 -> Class Engine.StaticMeshComponent
+  firewoodactor79: ObjectProperty @1640+8 -> Class Engine.StaticMeshComponent
+  firewoodactor80: ObjectProperty @1648+8 -> Class Engine.StaticMeshComponent
+  firewoodactor81: ObjectProperty @1656+8 -> Class Engine.StaticMeshComponent
+  firewoodactor82: ObjectProperty @1664+8 -> Class Engine.StaticMeshComponent
+  firewoodactor83: ObjectProperty @1672+8 -> Class Engine.StaticMeshComponent
+  firewoodactor84: ObjectProperty @1680+8 -> Class Engine.StaticMeshComponent
+  firewoodactor85: ObjectProperty @1688+8 -> Class Engine.StaticMeshComponent
+  firewoodactor86: ObjectProperty @1696+8 -> Class Engine.StaticMeshComponent
+  firewoodactor87: ObjectProperty @1704+8 -> Class Engine.StaticMeshComponent
+  firewoodactor88: ObjectProperty @1712+8 -> Class Engine.StaticMeshComponent
+  firewoodactor89: ObjectProperty @1720+8 -> Class Engine.StaticMeshComponent
+  firewoodactor90: ObjectProperty @1728+8 -> Class Engine.StaticMeshComponent
+  firewoodactor91: ObjectProperty @1736+8 -> Class Engine.StaticMeshComponent
+  firewoodactor92: ObjectProperty @1744+8 -> Class Engine.StaticMeshComponent
+  firewoodactor93: ObjectProperty @1752+8 -> Class Engine.StaticMeshComponent
+  firewoodactor94: ObjectProperty @1760+8 -> Class Engine.StaticMeshComponent
+  firewoodactor95: ObjectProperty @1768+8 -> Class Engine.StaticMeshComponent
+  firewoodactor96: ObjectProperty @1776+8 -> Class Engine.StaticMeshComponent
+  firewoodactor97: ObjectProperty @1784+8 -> Class Engine.StaticMeshComponent
+  firewoodactor98: ObjectProperty @1792+8 -> Class Engine.StaticMeshComponent
+  firewoodactor99: ObjectProperty @1800+8 -> Class Engine.StaticMeshComponent
+  firewoodactor100: ObjectProperty @1808+8 -> Class Engine.StaticMeshComponent
+
+Functions (15):
+
+  Function arr.Storage.UpdateStorageWidget
+    cpp: UpdateStorageWidget, size: 0, flags: 0x8020c00
+    (no params)
+
+  Function arr.Storage.UpdateStorageMeshes
+    cpp: UpdateStorageMeshes, size: 0, flags: 0x4020401
+    (no params)
+
+  Function arr.Storage.UpdateItemFactor
+    cpp: UpdateItemFactor, size: 0, flags: 0x4020401
+    (no params)
+
+  Function arr.Storage.SetStorageCollision
+    cpp: SetStorageCollision, size: 1, flags: 0x20401
+    - BoolProperty State [Parm]
+
+  Function arr.Storage.SetFreight
+    cpp: SetFreight, size: 4, flags: 0x4020401
+    - IntProperty amount [Parm]
+
+  Function arr.Storage.RemoveFreight
+    cpp: RemoveFreight, size: 4, flags: 0x4020401
+    - IntProperty amount [Parm]
+
+  Function arr.Storage.OnRep_UpdateState
+    cpp: OnRep_UpdateState, size: 0, flags: 0x20401
+    (no params)
+
+  Function arr.Storage.GetRopePointChute1
+    cpp: GetRopePointChute1, size: 24, flags: 0x54820401
+    - StructProperty ReturnValue -> ScriptStruct CoreUObject.Vector [Parm,Out,Return]
+
+  Function arr.Storage.GetPitchFactorChute1
+    cpp: GetPitchFactorChute1, size: 4, flags: 0x54020401
+    - FloatProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.Storage.GetFreightFactor
+    cpp: GetFreightFactor, size: 4, flags: 0x54020401
+    - FloatProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.Storage.GetFreight
+    cpp: GetFreight, size: 4, flags: 0x54020401
+    - IntProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.Storage.GetEmptySlots
+    cpp: GetEmptySlots, size: 4, flags: 0x54020401
+    - IntProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.Storage.CheckForUncastedChildren
+    cpp: CheckForUncastedChildren, size: 0, flags: 0x4020401
+    (no params)
+
+  Function arr.Storage.CanAddFreight
+    cpp: CanAddFreight, size: 1, flags: 0x54020401
+    - BoolProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.Storage.AddFreight
+    cpp: AddFreight, size: 4, flags: 0x4020401
+    - IntProperty amount [Parm]

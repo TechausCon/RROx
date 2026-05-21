@@ -1,5 +1,32 @@
 import { IPluginController, Controller } from '@rrox/api';
-import { Log, TeleportCommunicator, ChangeSwitchCommunicator, SetControlsCommunicator, GetPlayerCheats, SetPlayerCheats, SetMoneyXPCheats, WorldSettings, SetControlsSyncCommunicator, storageUseCrane, PlayerCameraReset, FramecarResetCommunicator  } from '../shared';
+import {
+    Log,
+    TeleportCommunicator,
+    ChangeSwitchCommunicator,
+    SetControlsCommunicator,
+    GetPlayerCheats,
+    SetPlayerCheats,
+    SetMoneyXPCheats,
+    WorldSettings,
+    SetControlsSyncCommunicator,
+    storageUseCrane,
+    AddStorageCheats,
+    SetStorageKeepFull,
+    ApplyIndustryKeepAll,
+    ApplyAllIndustriesKeepAll,
+    TryIndustryServerRpcFill,
+    ProbeIndustryStorageSlots,
+    AutotestIndustryServerRpc,
+    RunIndustryRpcFocusTests,
+    ApplyLocomotivePreset,
+    SetLocomotiveBoilerCheats,
+    SetLocomotiveBrakeAir,
+    SetLocomotiveSpeedBoost,
+    GetLocomotiveKeepState,
+    ResetLocomotiveMaxSpeed,
+    PlayerCameraReset,
+    FramecarResetCommunicator,
+} from '../shared';
 import { Cheats } from './cheats';
 import { ControlsSynchronizer } from './controlsSync';
 import { WorldParser } from './parser';
@@ -123,6 +150,64 @@ export default class WorldPlugin extends Controller {
             }
 
             return this.cheats.setMoneyXP( player, money, xp );
+        } );
+
+        controller.communicator.handle( AddStorageCheats, ( owner, parentIndex, category, slotIndex, delta, fillMax ) => {
+            return this.cheats.addStorage( owner, parentIndex, category, slotIndex, delta, fillMax );
+        } );
+
+        controller.communicator.handle( SetStorageKeepFull, ( owner, parentIndex, category, slotIndex, enabled ) => {
+            return this.cheats.setKeepFull( owner, parentIndex, category, slotIndex, enabled );
+        } );
+
+        controller.communicator.handle( ApplyIndustryKeepAll, ( industryIndex ) => {
+            return this.cheats.applyIndustryKeepAll( industryIndex );
+        } );
+
+        controller.communicator.handle( ApplyAllIndustriesKeepAll, () => {
+            return this.cheats.applyAllIndustriesKeepAll();
+        } );
+
+        controller.communicator.handle( ProbeIndustryStorageSlots, ( industryIndex ) => {
+            return this.cheats.probeIndustryStorageSlots( industryIndex );
+        } );
+
+        controller.communicator.handle( AutotestIndustryServerRpc, ( industryIndex ) => {
+            return this.cheats.autotestIndustryServerRpc( industryIndex );
+        } );
+
+        controller.communicator.handle( RunIndustryRpcFocusTests, ( industryIndex, category, slotIndex ) => {
+            return this.cheats.runIndustryRpcFocusTests( industryIndex, category, slotIndex );
+        } );
+
+        controller.communicator.handle( TryIndustryServerRpcFill, ( industryIndex, category, slotIndex ) => {
+            return this.cheats.tryIndustryServerRpcFill( industryIndex, category, slotIndex );
+        } );
+
+        controller.communicator.handle( ApplyLocomotivePreset, ( frameIndex, preset ) => {
+            return this.cheats.applyPreset( frameIndex, preset );
+        } );
+
+        controller.communicator.handle( SetLocomotiveBoilerCheats, ( frameIndex, options ) => {
+            return this.cheats.setBoilerCheats( frameIndex, options );
+        } );
+
+        controller.communicator.handle( SetLocomotiveBrakeAir, ( frameIndex, fillMax, keepEnabled ) => {
+            if( keepEnabled != null )
+                return this.cheats.setBrakeAirKeep( frameIndex, keepEnabled );
+            return this.cheats.setBrakeAir( frameIndex, fillMax );
+        } );
+
+        controller.communicator.handle( SetLocomotiveSpeedBoost, ( frameIndex, enabled, multiplier ) => {
+            return this.cheats.setSpeedBoost( frameIndex, enabled, multiplier );
+        } );
+
+        controller.communicator.handle( GetLocomotiveKeepState, ( frameIndex ) => {
+            return this.cheats.getLocomotiveKeepState( frameIndex );
+        } );
+
+        controller.communicator.handle( ResetLocomotiveMaxSpeed, ( frameIndex ) => {
+            return this.cheats.resetLocomotiveMaxSpeed( frameIndex );
         } );
 
         controller.communicator.handle( SetControlsSyncCommunicator, ( index, enabled = true ) => {

@@ -60,6 +60,7 @@ export const WaterTower = React.memo( function WaterTower( { data, index }: { da
                 <StorageInfo
                     title={'Water Tower'}
 					parentIndex={index}
+                    ownerType="watertower"
                     storages={{
                         'Water Level': [ waterStorage ],
                     }}

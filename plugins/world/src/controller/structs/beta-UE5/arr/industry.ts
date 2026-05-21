@@ -65,55 +65,6 @@ export class Aindustry extends AActor {
     @Property.Name( "IndustryName" )
     public IndustryName: NameRef;
 
-    
-    // COAL TOWER STUPIDITY
+    // Coal-tower educt/product fields (educt1type, etc.) were removed in newer game builds.
 
-    /**
-     * A string property.
-     */
-    @Property.Str( "educt1type" )
-    public educt1type: string;
-    
-    /**
-     * A string property.
-     */
-    @Property.Str( "product1type" )
-    public product1type: string;
-    
-    /**
-     * A `int32` number property (range `-2147483648` to `+2147483647`).
-     * 
-     * @min `-2147483648`
-     * @max `+2147483647`
-     */
-    @Property.Int( "educt1amount" )
-    public educt1amount: int32;
-    
-    /**
-     * A `int32` number property (range `-2147483648` to `+2147483647`).
-     * 
-     * @min `-2147483648`
-     * @max `+2147483647`
-     */
-    @Property.Int( "product1amount" )
-    public product1amount: int32;
-    
-    /**
-     * A `int32` number property (range `-2147483648` to `+2147483647`).
-     * 
-     * @min `-2147483648`
-     * @max `+2147483647`
-     */
-    @Property.Int( "educt1amountmax" )
-    public educt1amountmax: int32;
-    
-    /**
-     * A `int32` number property (range `-2147483648` to `+2147483647`).
-     * 
-     * @min `-2147483648`
-     * @max `+2147483647`
-     */
-    @Property.Int( "product1amountmax" )
-    public product1amountmax: int32;
-    
 }

@@ -4,7 +4,7 @@ import L from 'leaflet';
 import { Divider } from 'antd';
 
 export function MapTooltip( { title, children, visible, position, setVisible }: {
-    title?: string,
+    title?: React.ReactNode,
     children?: React.ReactNode,
     position?: L.LatLngExpression,
     visible: boolean,

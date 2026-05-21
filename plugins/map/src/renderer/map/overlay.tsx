@@ -9,6 +9,8 @@ import { useWorld } from '@rrox-plugins/world/renderer';
 import { MapConfig } from './config';
 import { OverlayMode, useOverlayMode, useSettings } from '@rrox/api';
 import { MapPreferences } from '../../shared';
+import { AttachHintBanner } from './components';
+import { useAttached } from '@rrox/api';
 
 export function MapOverlay() {
     const data = useWorld();
@@ -24,6 +26,8 @@ export function MapOverlay() {
     useMapStyle();
 
     const currentPlayerName = usePlayerName( data );
+    const attached = useAttached();
+    const showAttachHint = !attached || !data;
 
     return <MapContext.Provider
         value={{
@@ -43,6 +47,11 @@ export function MapOverlay() {
         }}
     >
         <Modal minimapEnabled={preferences.minimap.enabled}>
+            {showAttachHint && mode === MapMode.MAP && (
+                <div style={{ position: 'absolute', top: 8, left: '50%', transform: 'translateX(-50%)', zIndex: 3000, width: 'min(420px, 90vw)' }}>
+                    <AttachHintBanner />
+                </div>
+            )}
             <div className={[ 'map', `map-${mode}`, `corner-${preferences.minimap.corner}` ].join( ' ' )}>
                 {data ? <Map
                     data={data}

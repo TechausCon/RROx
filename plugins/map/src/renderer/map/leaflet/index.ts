@@ -8,3 +8,5 @@ export * from './setup';
 export * from './shape';
 export * from './tileLayer';
 export * from './tooltip';
+export * from './playerNameLabel';
+export * from './mapNameLabel';

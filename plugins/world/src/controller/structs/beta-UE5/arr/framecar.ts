@@ -31,12 +31,8 @@ export class Aframecar extends ACharacter {
      */
     @Property.Text( "FrameNumber" )
     public FrameNumber: string;
-    
-    /**
-     * A string property.
-     */
-    @Property.Text( "framename" )
-    public framename: string;
+
+    // framename removed in newer game builds; use FrameNumber for display.
     
     /**
      * A `float` number property (contains decimal digits).

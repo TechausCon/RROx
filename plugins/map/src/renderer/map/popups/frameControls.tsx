@@ -4,7 +4,7 @@ import { Button } from "antd";
 import { CompressOutlined, ExpandOutlined, ControlOutlined, AimOutlined } from "@ant-design/icons";
 import { DraggableModal } from 'ant-design-draggable-modal';
 import { MapContext } from '../context';
-import { FrameControls } from '../components';
+import { FrameControls, StorageCheatButtons } from '../components';
 import { FrameDefinitions } from '../definitions';
 import { MapMode } from '../types';
 import { FrameCarType, IFrameCar } from '@rrox-plugins/world/shared';
@@ -98,5 +98,10 @@ export function FrameControlsPopup( {
             controlEnabled={controlEnabled}
             frames={frames}
         />
+        { ( data.tender || data.freight || data.boiler ) && (
+            <div style={{ marginTop: 12, padding: 12, borderTop: '1px solid #eee' }}>
+                <StorageCheatButtons frameIndex={index} data={data} />
+            </div>
+        )}
     </DraggableModal>;
 }

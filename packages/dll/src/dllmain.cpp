@@ -18,11 +18,16 @@ void run(std::stop_token stoken) {
 
     injector.stopToken = stoken;
 
-    injector.log("Loading...");
+    injector.log("RROx DLL loaded.");
 
-    injector.load();
+    if (!injector.load()) {
+        injector.log("RROx init failed — exiting injected thread.");
+        injector.stop();
+        FreeLibraryAndExitThread(dll, 0);
+        return;
+    }
 
-    injector.log("Stopping...");
+    injector.log("RROx shutting down injected thread.");
     injector.stop();
 
     FreeLibraryAndExitThread(dll, 0);

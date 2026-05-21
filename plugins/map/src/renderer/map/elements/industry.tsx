@@ -1,21 +1,32 @@
 import React, { useContext, useMemo, useState } from 'react';
+import { LayerGroup } from 'react-leaflet';
+import L from 'leaflet';
 import { MapContext } from '../context';
 import { IndustryDefinition, IndustryDefinitions } from '../definitions';
-import { Image, Shape, MapTooltip } from '../leaflet';
+import { Image, Shape, MapTooltip, MapNameLabel } from '../leaflet';
+import { MapTooltipExtras } from '../components';
 import { Button } from 'antd';
 import { StorageInfo } from '../popups';
-import { usePositions, usePopupElements, useImageAdjust } from '../hooks';
+import { usePositions, usePopupElements, useImageAdjust, usePlayerName } from '../hooks';
+import { useWorld } from '@rrox-plugins/world/renderer';
 import { MapMode } from '../types';
 import { IIndustry, IndustryType, TeleportCommunicator } from '@rrox-plugins/world/shared';
 import { useRPC } from '@rrox/api';
 import { Crane } from './crane';
 
 export const Industry = React.memo( function Industry( { data, index }: { data: IIndustry, index: number } ) {
-    const { utils, mode } = useContext( MapContext )!;
+    const { utils, mode, follow, preferences } = useContext( MapContext )!;
+    const showIndustryLabel = preferences.labels?.industries === true;
+    const world = useWorld();
+    const playerName = usePlayerName( world );
     const [ infoVisible, setInfoVisible ] = useState( false );
     const [ tooltipVisible, setTooltipVisible ] = useState( false );
 
     const { type, location, rotation, products, educts } = data;
+
+    const liveIndustry = world?.industries[ index ];
+    const liveEducts = liveIndustry?.educts ?? educts;
+    const liveProducts = liveIndustry?.products ?? products;
 
     const definition = ( IndustryDefinitions[ type ] as IndustryDefinition | undefined ) ?? IndustryDefinitions[ IndustryType.UNKNOWN ];
 
@@ -26,16 +37,17 @@ export const Industry = React.memo( function Industry( { data, index }: { data: 
         visible={tooltipVisible && mode !== MapMode.MINIMAP}
         setVisible={setTooltipVisible}
     >
-        {( educts?.length > 0 || products?.length > 0 ) && <Button onClick={() => {
+        <Button onClick={() => {
             setTooltipVisible( false );
             setInfoVisible( true );
-        }}>Show Info</Button>}
+        }}>Show Info</Button>
         <StorageInfo
             title={definition.name}
             parentIndex={index}
+            ownerType="industry"
             storages={{
-                Input: educts,
-                Output: products
+                Input: liveEducts,
+                Output: liveProducts
             }}
             className={mode === MapMode.MINIMAP ? 'modal-hidden' : undefined}
             isVisible={infoVisible}
@@ -46,6 +58,30 @@ export const Industry = React.memo( function Industry( { data, index }: { data: 
             }}
         />
         {popupElements}
+        <MapTooltipExtras
+            targetLocation={location}
+            onClose={() => setTooltipVisible( false )}
+            onPanToTarget={() => {
+                const a = utils.scaleLocation( location );
+                follow.setFollowing( {
+                    array: 'industries',
+                    index,
+                    apply: ( _d, map ) => map.panTo( L.latLng( a[ 0 ], a[ 1 ] ), { animate: true, duration: 0.5 } ),
+                } );
+            }}
+            onPanToPlayer={() => {
+                const pi = world?.players.findIndex( ( p ) => p.name === playerName ) ?? 0;
+                const pl = world?.players[ pi ];
+                if( !pl )
+                    return;
+                const a = utils.scaleLocation( pl.location );
+                follow.setFollowing( {
+                    array: 'players',
+                    index: pi,
+                    apply: ( _d, map ) => map.panTo( L.latLng( a[ 0 ], a[ 1 ] ), { animate: true, duration: 0.5 } ),
+                } );
+            }}
+        />
     </MapTooltip>;
 
     const cranes = useMemo( () => {
@@ -54,8 +90,18 @@ export const Industry = React.memo( function Industry( { data, index }: { data: 
         ) ).flat();
     }, [ data, index ] );
 
+    const industryLabel = showIndustryLabel && definition.name !== 'Unknown' ? (
+        <MapNameLabel
+            anchor={utils.scaleLocation( location )}
+            text={definition.name}
+            variant="industry"
+            compact={mode === MapMode.MINIMAP}
+            zIndexOffset={1800}
+        />
+    ) : null;
+
     if ( !definition.image )
-        return <>
+        return <LayerGroup>
             {cranes}
             <Shape
                 positions={[
@@ -72,7 +118,8 @@ export const Industry = React.memo( function Industry( { data, index }: { data: 
                 weight={60}
                 interactive
             >{tooltip}</Shape>
-        </>;
+            {industryLabel}
+        </LayerGroup>;
 
     const anchor = utils.scaleLocation( location );
 
@@ -98,8 +145,9 @@ export const Industry = React.memo( function Industry( { data, index }: { data: 
         bottomLeft
     ]: [ [ number, number ], [ number, number ], [ number, number ] ] = points; */
 
-    return <>
+    return <LayerGroup>
         {cranes}
+        {industryLabel}
         <Image
             topLeft={topLeft}
             topRight={topRight}
@@ -109,5 +157,5 @@ export const Industry = React.memo( function Industry( { data, index }: { data: 
         >
             {tooltip}
         </Image>
-    </>;
+    </LayerGroup>;
 } );

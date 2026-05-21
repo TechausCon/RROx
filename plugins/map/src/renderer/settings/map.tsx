@@ -1,6 +1,6 @@
 import { useSettings } from "@rrox/api";
 import React, { useEffect } from "react";
-import { Form, Radio, Avatar, Space, Divider } from "antd";
+import { Form, Radio, Avatar, Divider, Switch } from "antd";
 import { MapPreferences } from "../../shared";
 import Background1 from '../images/bg1.jpg';
 import Background2 from '../images/bg2.jpg';
@@ -50,6 +50,25 @@ export function MapSettings() {
 					<Radio.Button value={9} style={{ margin: '5px', padding: '5px', height: '100%' }}><Avatar shape='square' size={128} src={Background9} /></Radio.Button>
 					<Radio.Button value={10} style={{ margin: '5px', padding: '5px', height: '100%' }}><Avatar shape='square' size={128} src={Background10} /></Radio.Button>
 				</Radio.Group>
+			</Form.Item>
+			<Divider>Karten-Beschriftung</Divider>
+			<p style={{ marginBottom: 12, fontSize: 13, color: '#666' }}>
+				Weniger Häkchen = ruhigere Karte. Loks und Güterwagen am gleichen Ort überlagern sich sonst oft.
+			</p>
+			<Form.Item label="Spielernamen" name={[ 'labels', 'players' ]} valuePropName="checked">
+				<Switch />
+			</Form.Item>
+			<Form.Item label="Lokomotiven (nur Loks)" name={[ 'labels', 'locomotives' ]} valuePropName="checked">
+				<Switch />
+			</Form.Item>
+			<Form.Item label="Industrien" name={[ 'labels', 'industries' ]} valuePropName="checked">
+				<Switch />
+			</Form.Item>
+			<Form.Item label="Güterwagen / Tender" name={[ 'labels', 'freightCars' ]} valuePropName="checked">
+				<Switch />
+			</Form.Item>
+			<Form.Item label="Kessel-Info (DR / Wasser)" name={[ 'labels', 'boilerBadge' ]} valuePropName="checked">
+				<Switch />
 			</Form.Item>
 		</Form>
 		<p>

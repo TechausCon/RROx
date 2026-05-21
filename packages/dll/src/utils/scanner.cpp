@@ -78,6 +78,17 @@ std::optional<uintptr_t> Scanner::find(uintptr_t start, size_t length, bool scan
     return std::nullopt;
 }
 
+std::optional<uintptr_t> Scanner::findNext(uintptr_t start, size_t length, uintptr_t after, bool scanCodeOnly) {
+    if (after < start)
+        return find(start, length, scanCodeOnly);
+
+    auto nextStart = after + 1;
+    if (nextStart >= start + length)
+        return std::nullopt;
+
+    return find(nextStart, length - (nextStart - start), scanCodeOnly);
+}
+
 bool Scanner::isGoodPtr(uintptr_t ptr, size_t len, bool codeOnly) {
     return codeOnly ? IsBadCodePtr((FARPROC)ptr) == FALSE : IsBadReadPtr((const void*)ptr, len) == FALSE;
 }

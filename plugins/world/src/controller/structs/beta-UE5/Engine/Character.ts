@@ -1,5 +1,4 @@
-import { Property, Struct, StructInfo } from "@rrox/api";
-import { UCharacterMovementComponent } from "./CharacterMovementComponent";
+import { Struct, StructInfo } from "@rrox/api";
 import { APawn } from "./Pawn";
 
 @Struct( "Class Engine.Character" )
@@ -9,11 +8,7 @@ export class ACharacter extends APawn {
         super( struct );
         struct.apply( this );
     }
-    
-    /**
-     * An object property containing information of a subobject.
-     */
-    @Property.Object( "CharacterMovement", () => UCharacterMovementComponent )
-    public CharacterMovement: UCharacterMovementComponent;
+
+    // CharacterMovement was removed from arr.Framecar / locomotive actors in newer game builds.
 
 }

@@ -1,0 +1,262 @@
+Dumping: Class arr.ARRPlayerController
+[inject] Class arr.ARRPlayerController
+[dll] Retrieving struct: Class arr.ARRPlayerController
+
+Class arr.ARRPlayerController
+  super: Class Engine.PlayerController
+  size: 2552
+
+Members (44):
+  LastControlledPawn: ObjectProperty @2136+8 -> Class Engine.Pawn
+  PlayerPawnTemplate: ClassProperty @2144+8 -> Class arr.SCharacter
+  VehicleSelectionPawnTemplate: ClassProperty @2152+8 -> Class arr.ARRVehicleSelectionDefaultPawn
+  MyVehicleSelectionPawn: ObjectProperty @2160+8 -> Class arr.ARRVehicleSelectionDefaultPawn
+  PlayedSongsIndices: ArrayProperty @2168+16 inner=IntProperty PlayedSongsIndices
+  TrainsSettings: ObjectProperty @2184+8 -> Class arr.TrainsData
+  OnPlayerEnterVehicle: Unknown @2192+16
+  OnPlayerExitVehicle: Unknown @2208+16
+  OnARRPawnPossessedDelegate: Unknown @2224+16
+  PlayerName: StrProperty @2240+16
+  bFrameCarUIIsOpen: BoolProperty @2256+1
+  AudioCompSongs: ObjectProperty @2264+8 -> Class Engine.AudioComponent
+  SongArray: ArrayProperty @2272+16 inner=ObjectProperty SongArray -> Class Engine.SoundBase
+  LastPlayedSongIndex: IntProperty @2288+4
+  WhistleSound: ObjectProperty @2296+8 -> Class Engine.SoundBase
+  song1: ObjectProperty @2304+8 -> Class Engine.SoundBase
+  song2: ObjectProperty @2312+8 -> Class Engine.SoundBase
+  song3: ObjectProperty @2320+8 -> Class Engine.SoundBase
+  song4: ObjectProperty @2328+8 -> Class Engine.SoundBase
+  song5: ObjectProperty @2336+8 -> Class Engine.SoundBase
+  song6: ObjectProperty @2344+8 -> Class Engine.SoundBase
+  song7: ObjectProperty @2352+8 -> Class Engine.SoundBase
+  song8: ObjectProperty @2360+8 -> Class Engine.SoundBase
+  song9: ObjectProperty @2368+8 -> Class Engine.SoundBase
+  song10: ObjectProperty @2376+8 -> Class Engine.SoundBase
+  song11: ObjectProperty @2384+8 -> Class Engine.SoundBase
+  song12: ObjectProperty @2392+8 -> Class Engine.SoundBase
+  song13: ObjectProperty @2400+8 -> Class Engine.SoundBase
+  song14: ObjectProperty @2408+8 -> Class Engine.SoundBase
+  song15: ObjectProperty @2416+8 -> Class Engine.SoundBase
+  song16: ObjectProperty @2424+8 -> Class Engine.SoundBase
+  song17: ObjectProperty @2432+8 -> Class Engine.SoundBase
+  song18: ObjectProperty @2440+8 -> Class Engine.SoundBase
+  song19: ObjectProperty @2448+8 -> Class Engine.SoundBase
+  song20: ObjectProperty @2456+8 -> Class Engine.SoundBase
+  song21: ObjectProperty @2464+8 -> Class Engine.SoundBase
+  song22: ObjectProperty @2472+8 -> Class Engine.SoundBase
+  song23: ObjectProperty @2480+8 -> Class Engine.SoundBase
+  song24: ObjectProperty @2488+8 -> Class Engine.SoundBase
+  song25: ObjectProperty @2496+8 -> Class Engine.SoundBase
+  song26: ObjectProperty @2504+8 -> Class Engine.SoundBase
+  song27: ObjectProperty @2512+8 -> Class Engine.SoundBase
+  song28: ObjectProperty @2520+8 -> Class Engine.SoundBase
+  song29: ObjectProperty @2528+8 -> Class Engine.SoundBase
+
+Functions (46):
+
+  Function arr.ARRPlayerController.UpdateGameStateData
+    cpp: UpdateGameStateData, size: 0, flags: 0x4020401
+    (no params)
+
+  Function arr.ARRPlayerController.StopCurrentSong
+    cpp: StopCurrentSong, size: 0, flags: 0x4040401
+    (no params)
+
+  Function arr.ARRPlayerController.SetPlayerXP
+    cpp: SetPlayerXP, size: 4, flags: 0x4020401
+    - IntProperty xp [Parm]
+
+  Function arr.ARRPlayerController.SetPlayerRotation
+    cpp: SetPlayerRotation, size: 24, flags: 0x4c20401
+    - StructProperty Rotation -> ScriptStruct CoreUObject.Rotator [Parm,Out]
+
+  Function arr.ARRPlayerController.SetPlayerName
+    cpp: SetPlayerName, size: 16, flags: 0x20401
+    - StrProperty PlayerName [Parm]
+
+  Function arr.ARRPlayerController.SetPlayerMoney
+    cpp: SetPlayerMoney, size: 4, flags: 0x4020401
+    - IntProperty money [Parm]
+
+  Function arr.ARRPlayerController.SetPlayerLocation
+    cpp: SetPlayerLocation, size: 24, flags: 0x4c20401
+    - StructProperty Location -> ScriptStruct CoreUObject.Vector [Parm,Out]
+
+  Function arr.ARRPlayerController.SetPawnCameraState
+    cpp: SetPawnCameraState, size: 4, flags: 0x4020401
+    - IntProperty State [Parm]
+
+  Function arr.ARRPlayerController.SetNewPawnLocation
+    cpp: SetNewPawnLocation, size: 24, flags: 0x4c20401
+    - StructProperty WorldLocation -> ScriptStruct CoreUObject.Vector [Parm,Out]
+
+  Function arr.ARRPlayerController.SetLastControlledPawn
+    cpp: SetLastControlledPawn, size: 8, flags: 0x4020401
+    - ObjectProperty lastPawn -> Class Engine.Pawn [Parm]
+
+  Function arr.ARRPlayerController.ServerUpdateGameStateIndustryArrays
+    cpp: ServerUpdateGameStateIndustryArrays, size: 0, flags: 0x4220cc0
+    (no params)
+
+  Function arr.ARRPlayerController.ServerUpdateGameStateData
+    cpp: ServerUpdateGameStateData, size: 8, flags: 0x220cc0
+    - ObjectProperty PlayerController -> Class arr.ARRPlayerController [Parm]
+
+  Function arr.ARRPlayerController.ServerSpawnVehicleSelectionPawnWithDisplay
+    cpp: ServerSpawnVehicleSelectionPawnWithDisplay, size: 88, flags: 0x4a20cc0
+    - StructProperty spawnLoc -> ScriptStruct Engine.Vector_NetQuantize [Parm]
+    - StructProperty displayLoc -> ScriptStruct Engine.Vector_NetQuantize [Parm]
+    - StructProperty displayRot -> ScriptStruct CoreUObject.Rotator [Parm]
+    - ObjectProperty PlayerController -> Class arr.ARRPlayerController [Parm]
+    - ObjectProperty spawnTrack -> Class arr.SplineTrack [Parm]
+
+  Function arr.ARRPlayerController.ServerSpawnVehicleSelectionPawn
+    cpp: ServerSpawnVehicleSelectionPawn, size: 32, flags: 0x84a20cc0
+    - StructProperty spawnLoc -> ScriptStruct CoreUObject.Vector [Parm]
+    - ObjectProperty PlayerController -> Class arr.ARRPlayerController [Parm]
+
+  Function arr.ARRPlayerController.ServerSpawnFrameCar
+    cpp: ServerSpawnFrameCar, size: 152, flags: 0x4a20cc0
+    - StrProperty FrameType [Parm]
+    - StructProperty locoLocation -> ScriptStruct CoreUObject.Vector [Parm]
+    - StructProperty locoRotation -> ScriptStruct CoreUObject.Rotator [Parm]
+    - TextProperty customFrameNumberTxt [Parm]
+    - TextProperty customFrameName [Parm]
+    - TextProperty customTenderName [Parm]
+    - IntProperty customSmokestackType [Parm]
+    - IntProperty customHeadlightType [Parm]
+    - IntProperty customPaintType [Parm]
+
+  Function arr.ARRPlayerController.ServerSpawnAndPossessNewPawnAtLocation
+    cpp: ServerSpawnAndPossessNewPawnAtLocation, size: 32, flags: 0xa20cc0
+    - ObjectProperty PlayerController -> Class arr.ARRPlayerController [Parm]
+    - StructProperty Location -> ScriptStruct CoreUObject.Vector [Parm]
+
+  Function arr.ARRPlayerController.ServerSetPawnLocation
+    cpp: ServerSetPawnLocation, size: 24, flags: 0x80a20cc0
+    - StructProperty WorldLocation -> ScriptStruct CoreUObject.Vector [Parm]
+
+  Function arr.ARRPlayerController.ServerSetNewPawnLocation
+    cpp: ServerSetNewPawnLocation, size: 32, flags: 0xa20cc0
+    - ObjectProperty NewPawn -> Class Engine.Pawn [Parm]
+    - StructProperty WorldLocation -> ScriptStruct CoreUObject.Vector [Parm]
+
+  Function arr.ARRPlayerController.ServerRespawnPlayerAtLocationAndRotation
+    cpp: ServerRespawnPlayerAtLocationAndRotation, size: 56, flags: 0x4a20cc0
+    - ObjectProperty PlayerController -> Class arr.ARRPlayerController [Parm]
+    - StructProperty spawnLoc -> ScriptStruct CoreUObject.Vector [Parm]
+    - StructProperty spawnRot -> ScriptStruct CoreUObject.Rotator [Parm]
+
+  Function arr.ARRPlayerController.ServerRespawnPlayer
+    cpp: ServerRespawnPlayer, size: 8, flags: 0x84220cc0
+    - ObjectProperty PlayerController -> Class arr.ARRPlayerController [Parm]
+
+  Function arr.ARRPlayerController.ServerPossessPawn
+    cpp: ServerPossessPawn, size: 8, flags: 0x220cc0
+    - ObjectProperty MyPawn -> Class Engine.Pawn [Parm]
+
+  Function arr.ARRPlayerController.ServerFramecarForceUpdateTransform
+    cpp: ServerFramecarForceUpdateTransform, size: 8, flags: 0x80220c40
+    - ObjectProperty car -> Class arr.Framecar [Parm]
+
+  Function arr.ARRPlayerController.ServerDestroyPawn
+    cpp: ServerDestroyPawn, size: 8, flags: 0x80220cc0
+    - ObjectProperty pawnToDestroy -> Class Engine.Pawn [Parm]
+
+  Function arr.ARRPlayerController.ServerDestroyFrameCarUI
+    cpp: ServerDestroyFrameCarUI, size: 8, flags: 0x220cc0
+    - ObjectProperty PlayerController -> Class arr.ARRPlayerController [Parm]
+
+  Function arr.ARRPlayerController.RespawnPlayerAtLocationAndRotation
+    cpp: RespawnPlayerAtLocationAndRotation, size: 48, flags: 0x4c20401
+    - StructProperty spawnLoc -> ScriptStruct CoreUObject.Vector [Parm,Out]
+    - StructProperty spawnRot -> ScriptStruct CoreUObject.Rotator [Parm,Out]
+
+  Function arr.ARRPlayerController.RespawnPlayer
+    cpp: RespawnPlayer, size: 0, flags: 0x4020401
+    (no params)
+
+  Function arr.ARRPlayerController.PossessNewPawn
+    cpp: PossessNewPawn, size: 8, flags: 0x4020401
+    - ObjectProperty pawnToPossess -> Class Engine.Pawn [Parm]
+
+  Function arr.ARRPlayerController.PlaySong
+    cpp: PlaySong, size: 4, flags: 0x4040401
+    - IntProperty Index [Parm]
+
+  Function arr.ARRPlayerController.PlayRandomSong
+    cpp: PlayRandomSong, size: 0, flags: 0x4040401
+    (no params)
+
+  Function arr.ARRPlayerController.PlayFirstSong
+    cpp: PlayFirstSong, size: 0, flags: 0x4040401
+    (no params)
+
+  Function arr.ARRPlayerController.PawnLeavingGame
+    cpp: PawnLeavingGame, size: 0, flags: 0x20400
+    (no params)
+
+  DelegateFunction arr.ARRPlayerController.OnPlayerExitVehicle__DelegateSignature
+    cpp: OnPlayerExitVehicle__DelegateSignature, size: 16, flags: 0x130000
+    - ObjectProperty Player -> Class arr.SCharacter [Parm]
+    - ObjectProperty desiredVehicle -> Class arr.Framecar [Parm]
+
+  DelegateFunction arr.ARRPlayerController.OnPlayerEnterVehicle__DelegateSignature
+    cpp: OnPlayerEnterVehicle__DelegateSignature, size: 16, flags: 0x130000
+    - ObjectProperty Player -> Class arr.SCharacter [Parm]
+    - ObjectProperty desiredVehicle -> Class arr.Framecar [Parm]
+
+  DelegateFunction arr.ARRPlayerController.OnPawnPossessed__DelegateSignature
+    cpp: OnPawnPossessed__DelegateSignature, size: 0, flags: 0x130000
+    (no params)
+
+  Function arr.ARRPlayerController.OnControllerConnectionChanged
+    cpp: OnControllerConnectionChanged, size: 12, flags: 0x40401
+    - EnumProperty NewConnectionState -> Enum CoreUObject.EInputDeviceConnectionState [Parm]
+    - StructProperty PlatformUserId -> ScriptStruct CoreUObject.PlatformUserId [Parm]
+    - StructProperty InputDeviceId -> ScriptStruct CoreUObject.InputDeviceId [Parm]
+
+  Function arr.ARRPlayerController.GetPlayerXP
+    cpp: GetPlayerXP, size: 4, flags: 0x54020401
+    - IntProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.ARRPlayerController.GetPlayerName
+    cpp: GetPlayerName, size: 16, flags: 0x4020401
+    - StrProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.ARRPlayerController.GetPlayerMoney
+    cpp: GetPlayerMoney, size: 4, flags: 0x54020401
+    - IntProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.ARRPlayerController.GetPlayerLevel
+    cpp: GetPlayerLevel, size: 4, flags: 0x54020401
+    - IntProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.ARRPlayerController.GetLastInputType
+    cpp: GetLastInputType, size: 1, flags: 0x54020401
+    - EnumProperty ReturnValue -> Enum arr.EInputType [Parm,Out,Return]
+
+  Function arr.ARRPlayerController.GetLastControlledPawn
+    cpp: GetLastControlledPawn, size: 8, flags: 0x54020401
+    - ObjectProperty ReturnValue -> Class Engine.Pawn [Parm,Out,Return]
+
+  Function arr.ARRPlayerController.GetInputDisplayName
+    cpp: GetInputDisplayName, size: 32, flags: 0x54020401
+    - NameProperty actionOrAxisName [Parm]
+    - TextProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.ARRPlayerController.ExitCurrentFrameCarFunction
+    cpp: ExitCurrentFrameCarFunction, size: 24, flags: 0x4c20401
+    - StructProperty exitLocation -> ScriptStruct CoreUObject.Vector [Parm,Out]
+
+  Function arr.ARRPlayerController.ExitCurrentFrameCar
+    cpp: ExitCurrentFrameCar, size: 24, flags: 0x8c20c00
+    - StructProperty exitLocation -> ScriptStruct CoreUObject.Vector [Parm,Out]
+
+  Function arr.ARRPlayerController.EnterCurrentFrameCar
+    cpp: EnterCurrentFrameCar, size: 0, flags: 0x8020c00
+    (no params)
+
+  Function arr.ARRPlayerController.ClientKickPlayer
+    cpp: ClientKickPlayer, size: 1, flags: 0x1020cc0
+    - ByteProperty destroyReason ->  [Parm]

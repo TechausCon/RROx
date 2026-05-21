@@ -1,0 +1,140 @@
+Dumping: Class arr.Industry
+[inject] Class arr.Industry
+[dll] Retrieving struct: Class arr.Industry
+
+Class arr.Industry
+  super: Class Engine.Actor
+  size: 1272
+
+Members (85):
+  IndustryName: NameProperty @664+8
+  bCollisionEnabled: BoolProperty @672+1
+  bCanGuestDestroy: BoolProperty @673+1
+  bCanBeDeleted: BoolProperty @674+1
+  bCanShowAlerts: BoolProperty @675+1
+  bAdjustIndustryToTerrain: BoolProperty @676+1
+  intakeressource1: IntProperty @680+4
+  intakeressource2: IntProperty @684+4
+  intakeressource3: IntProperty @688+4
+  intakeressource4: IntProperty @692+4
+  outputressource1: IntProperty @696+4
+  outputressource2: IntProperty @700+4
+  outputressource3: IntProperty @704+4
+  outputressource4: IntProperty @708+4
+  chute1: ObjectProperty @712+8 -> Class Engine.ChildActorComponent
+  chute2: ObjectProperty @720+8 -> Class Engine.ChildActorComponent
+  chute3: ObjectProperty @728+8 -> Class Engine.ChildActorComponent
+  chute4: ObjectProperty @736+8 -> Class Engine.ChildActorComponent
+  Mychute1: ObjectProperty @744+8 -> Class arr.Chute
+  Mychute2: ObjectProperty @752+8 -> Class arr.Chute
+  Mychute3: ObjectProperty @760+8 -> Class arr.Chute
+  Mychute4: ObjectProperty @768+8 -> Class arr.Chute
+  storageeducts1: ObjectProperty @776+8 -> Class Engine.ChildActorComponent
+  mystorageeducts1: ObjectProperty @784+8 -> Class arr.Storage
+  storageeducts2: ObjectProperty @792+8 -> Class Engine.ChildActorComponent
+  mystorageeducts2: ObjectProperty @800+8 -> Class arr.Storage
+  storageeducts3: ObjectProperty @808+8 -> Class Engine.ChildActorComponent
+  mystorageeducts3: ObjectProperty @816+8 -> Class arr.Storage
+  storageeducts4: ObjectProperty @824+8 -> Class Engine.ChildActorComponent
+  mystorageeducts4: ObjectProperty @832+8 -> Class arr.Storage
+  storageproducts1: ObjectProperty @840+8 -> Class Engine.ChildActorComponent
+  mystorageproducts1: ObjectProperty @848+8 -> Class arr.Storage
+  storageproducts2: ObjectProperty @856+8 -> Class Engine.ChildActorComponent
+  mystorageproducts2: ObjectProperty @864+8 -> Class arr.Storage
+  storageproducts3: ObjectProperty @872+8 -> Class Engine.ChildActorComponent
+  mystorageproducts3: ObjectProperty @880+8 -> Class arr.Storage
+  storageproducts4: ObjectProperty @888+8 -> Class Engine.ChildActorComponent
+  mystorageproducts4: ObjectProperty @896+8 -> Class arr.Storage
+  door1: ObjectProperty @904+8 -> Class Engine.ChildActorComponent
+  mydoor1: ObjectProperty @912+8 -> Class arr.Hatch
+  door2: ObjectProperty @920+8 -> Class Engine.ChildActorComponent
+  mydoor2: ObjectProperty @928+8 -> Class arr.Hatch
+  door3: ObjectProperty @936+8 -> Class Engine.ChildActorComponent
+  mydoor3: ObjectProperty @944+8 -> Class arr.Hatch
+  door4: ObjectProperty @952+8 -> Class Engine.ChildActorComponent
+  mydoor4: ObjectProperty @960+8 -> Class arr.Hatch
+  door5: ObjectProperty @968+8 -> Class Engine.ChildActorComponent
+  mydoor5: ObjectProperty @976+8 -> Class arr.Hatch
+  door6: ObjectProperty @984+8 -> Class Engine.ChildActorComponent
+  mydoor6: ObjectProperty @992+8 -> Class arr.Hatch
+  door7: ObjectProperty @1000+8 -> Class Engine.ChildActorComponent
+  mydoor7: ObjectProperty @1008+8 -> Class arr.Hatch
+  door8: ObjectProperty @1016+8 -> Class Engine.ChildActorComponent
+  mydoor8: ObjectProperty @1024+8 -> Class arr.Hatch
+  door9: ObjectProperty @1032+8 -> Class Engine.ChildActorComponent
+  mydoor9: ObjectProperty @1040+8 -> Class arr.Hatch
+  door10: ObjectProperty @1048+8 -> Class Engine.ChildActorComponent
+  mydoor10: ObjectProperty @1056+8 -> Class arr.Hatch
+  door11: ObjectProperty @1064+8 -> Class Engine.ChildActorComponent
+  mydoor11: ObjectProperty @1072+8 -> Class arr.Hatch
+  door12: ObjectProperty @1080+8 -> Class Engine.ChildActorComponent
+  mydoor12: ObjectProperty @1088+8 -> Class arr.Hatch
+  splinetrack1: ObjectProperty @1096+8 -> Class Engine.ChildActorComponent
+  mysplinetrack1: ObjectProperty @1104+8 -> Class arr.SplineTrack
+  splinetrack2: ObjectProperty @1112+8 -> Class Engine.ChildActorComponent
+  mysplinetrack2: ObjectProperty @1120+8 -> Class arr.SplineTrack
+  bHasNoEduct: BoolProperty @1128+1
+  ProcessingTime: FloatProperty @1132+4
+  RootMesh: ObjectProperty @1136+8 -> Class Engine.StaticMeshComponent
+  building1: ObjectProperty @1144+8 -> Class Engine.StaticMeshComponent
+  building2: ObjectProperty @1152+8 -> Class Engine.StaticMeshComponent
+  building3: ObjectProperty @1160+8 -> Class Engine.StaticMeshComponent
+  building4: ObjectProperty @1168+8 -> Class Engine.StaticMeshComponent
+  building5: ObjectProperty @1176+8 -> Class Engine.StaticMeshComponent
+  platform1: ObjectProperty @1184+8 -> Class Engine.StaticMeshComponent
+  platform2: ObjectProperty @1192+8 -> Class Engine.StaticMeshComponent
+  platform3: ObjectProperty @1200+8 -> Class Engine.StaticMeshComponent
+  platform4: ObjectProperty @1208+8 -> Class Engine.StaticMeshComponent
+  audio1: ObjectProperty @1216+8 -> Class Engine.AudioComponent
+  AudioProductSpawn: ObjectProperty @1224+8 -> Class Engine.AudioComponent
+  productanimmesh: ObjectProperty @1232+8 -> Class Engine.SkeletalMeshComponent
+  productmeshspeed: FloatProperty @1240+4
+  ParticleSpawnRate: FloatProperty @1244+4
+  AbilitySystemComponent: ObjectProperty @1248+8 -> Class GameplayAbilities.AbilitySystemComponent
+  IndustryAttributes: ObjectProperty @1256+8 -> Class arr.IndustryAttributeSet
+
+Functions (11):
+
+  Function arr.Industry.UpdateIndustryWidget
+    cpp: UpdateIndustryWidget, size: 4, flags: 0x8020c00
+    - FloatProperty buildtime [Parm]
+
+  Function arr.Industry.SetupAllChildActorComponents
+    cpp: SetupAllChildActorComponents, size: 0, flags: 0x4020401
+    (no params)
+
+  Function arr.Industry.SetIndustryCollision
+    cpp: SetIndustryCollision, size: 1, flags: 0x4020401
+    - BoolProperty State [Parm]
+
+  Function arr.Industry.SetDebugDrawDistance
+    cpp: SetDebugDrawDistance, size: 4, flags: 0x4020401
+    - FloatProperty meter [Parm]
+
+  Function arr.Industry.RefreshStoragesLocation
+    cpp: RefreshStoragesLocation, size: 0, flags: 0x4020401
+    (no params)
+
+  Function arr.Industry.RefreshStoragesCollision
+    cpp: RefreshStoragesCollision, size: 0, flags: 0x4020401
+    (no params)
+
+  Function arr.Industry.OnRep_UpdateCollision
+    cpp: OnRep_UpdateCollision, size: 0, flags: 0x20401
+    (no params)
+
+  Function arr.Industry.GetIndustryFull
+    cpp: GetIndustryFull, size: 1, flags: 0x54020401
+    - BoolProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.Industry.GetIndustryEmpty
+    cpp: GetIndustryEmpty, size: 1, flags: 0x54020401
+    - BoolProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.Industry.GetIndustryBlocked
+    cpp: GetIndustryBlocked, size: 1, flags: 0x54020401
+    - BoolProperty ReturnValue [Parm,Out,Return]
+
+  Function arr.Industry.AdjustIndustryToTerrain
+    cpp: AdjustIndustryToTerrain, size: 0, flags: 0x4020401
+    (no params)

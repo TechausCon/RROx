@@ -1,4 +1,5 @@
 export * from './airbrake';
+export * from './ARRPlayerController';
 export * from './arrGameStateBase';
 export * from './boiler';
 export * from './chute';
@@ -14,6 +15,7 @@ export * from './regulator';
 export * from './sandhouse';
 export * from './SCharacter';
 export * from './SplineActor';
+export * from './SplineActorLive';
 export * from './SplineTrack';
 export * from './storage';
 export * from './Switch';

@@ -1,17 +1,35 @@
 #include "pipe.h"
 #include "../injector.h"
 
-NamedPipe::NamedPipe(const std::string pipeName) {
+NamedPipe::NamedPipe(const std::string pipeName) : pipe(INVALID_HANDLE_VALUE) {
     name = pipeName;
-    Connect();
 }
 
 void NamedPipe::Connect() {
-    pipe = CreateFile(TEXT("\\\\.\\pipe\\RRO"), GENERIC_READ | GENERIC_WRITE, 0, NULL, OPEN_EXISTING, 0, NULL);
-    if (pipe == INVALID_HANDLE_VALUE)
+    if (connected && pipe != INVALID_HANDLE_VALUE)
         return;
 
-    ConnectNamedPipe(pipe, NULL);
+    Close();
+
+    // Client side: wait for the Electron/Node pipe server, then open the pipe.
+    // Do NOT call ConnectNamedPipe here — that is server-only and breaks the client.
+    if (!WaitNamedPipe(TEXT("\\\\.\\pipe\\RRO"), 15000))
+        return;
+
+    pipe = CreateFile(
+        TEXT("\\\\.\\pipe\\RRO"),
+        GENERIC_READ | GENERIC_WRITE,
+        0,
+        NULL,
+        OPEN_EXISTING,
+        0,
+        NULL
+    );
+
+    if (pipe == INVALID_HANDLE_VALUE) {
+        connected = false;
+        return;
+    }
 
     connected = true;
 }
@@ -30,10 +48,18 @@ Buffer NamedPipe::Read(std::size_t size) {
 }
 
 void NamedPipe::Write(Buffer& buffer) {
+    if (!connected)
+        Connect();
+
+    if (!connected)
+        return;
+
     auto size = buffer.Size();
     bool fSuccess = WriteFile(pipe, &size, sizeof(size), &numWritten, NULL);
     if (!fSuccess) {
         Connect();
+        if (!connected)
+            return;
         fSuccess = WriteFile(pipe, &size, sizeof(size), &numWritten, NULL);
     }
 
@@ -43,17 +69,24 @@ void NamedPipe::Write(Buffer& buffer) {
     fSuccess = WriteFile(pipe, buffer.Data(), buffer.Size(), &numWritten, NULL);
     if (!fSuccess) {
         Connect();
-        WriteFile(pipe, buffer.Data(), buffer.Size(), &numWritten, NULL);
+        if (connected)
+            WriteFile(pipe, buffer.Data(), buffer.Size(), &numWritten, NULL);
     }
 }
 
 void NamedPipe::Flush() {
-    FlushFileBuffers(pipe);
+    if (pipe != INVALID_HANDLE_VALUE)
+        FlushFileBuffers(pipe);
 }
 
 void NamedPipe::Close() {
+    if (pipe == nullptr || pipe == INVALID_HANDLE_VALUE)
+        return;
+
     Flush();
     CloseHandle(pipe);
+    pipe = INVALID_HANDLE_VALUE;
+    connected = false;
 }
 
 bool NamedPipe::IsConnected() {

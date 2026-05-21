@@ -20,7 +20,7 @@ protected:
 		} else if (std::holds_alternative<UE503Type>(object)) {
 			return reinterpret_cast<UE503Type2>(std::get<UE503Type>(object));
 		} else {
-			return {};
+			return std::variant<UE425Type2, UE503Type2>(std::in_place_index<0>, UE425Type2{});
 		}
 	}
 public:
@@ -62,7 +62,7 @@ Wrapper<UE425Type, UE503Type>::Wrapper(void* object, EVersion version) {
 			this->object = reinterpret_cast<UE503Type>(object);
 			break;
 		default:
-			this->object = { std::in_place_index<0>, nullptr };
+			this->object = std::variant<UE425Type, UE503Type>(std::in_place_index<0>, UE425Type{});
 			break;
 	}
 }

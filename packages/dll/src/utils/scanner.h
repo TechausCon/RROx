@@ -14,6 +14,9 @@ public:
 
     std::optional<uintptr_t> find(uintptr_t start, size_t length, bool scanCodeOnly = true);
 
+    /** Continues scanning after a previous match (exclusive). */
+    std::optional<uintptr_t> findNext(uintptr_t start, size_t length, uintptr_t after, bool scanCodeOnly = true);
+
     Scanner& operator=(const Scanner& other) = default;
     Scanner& operator=(Scanner&& other) = default;
 

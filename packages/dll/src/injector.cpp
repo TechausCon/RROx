@@ -1,4 +1,3 @@
-#pragma once
 #include <unordered_map>
 #include <vector>
 #include <string>
@@ -19,57 +18,154 @@
 #include "./net/messages/getinstancesmulti.h"
 #include "./net/messages/ready.h"
 
+namespace {
+	constexpr int32_t kMinObjectCount = 256;
+	constexpr int32_t kMaxObjectCount = 8'000'000;
+
+	bool isReadable(const void* ptr, size_t size) {
+		return ptr != nullptr && IsBadReadPtr(ptr, size) == FALSE;
+	}
+}
+
 size_t UE425::FNameEntryAllocator::NumEntries = 0;
 std::unordered_map<uint32_t, std::string> UE425::FNameEntryAllocator::Cache = {};
 size_t UE503::FNameEntryAllocator::NumEntries = 0;
 std::unordered_map<uint32_t, std::string> UE503::FNameEntryAllocator::Cache = {};
 
-bool Injector::load() {
-	if(
-		memory.retrieveSymbol<UE425::FUObjectArray>("48 8B 05 * * * * 48 8B 0C C8 48 8D 04 D1 EB", -0x10) &&
-		memory.retrieveSymbol<UE425::FNamePool>("48 8D 35 * * * * EB 16")
-	) {
-		// Loaded FUObjectArray and FNamePool for either UE425 or UE500
-		log("Found FUObjectArray and FNamePool address for either UE425 or UE500.");
+bool Injector::validateUE503ObjectArray(UE503::FUObjectArray* arr) {
+	if (!isReadable(arr, sizeof(UE503::FUObjectArray)))
+		return false;
 
-		objectArray.load(memory.getSymbol<UE425::FUObjectArray>());
-		UE425::NamePoolData = memory.getSymbol<UE425::FNamePool>();
+	auto& objects = arr->ObjObjects;
+	if (objects.NumElements < kMinObjectCount || objects.NumElements > kMaxObjectCount)
+		return false;
 
-		uint32_t version_offset = determineVersionOffset();
+	if (objects.MaxElements < objects.NumElements)
+		return false;
 
-		if (version_offset == 0xA4) {
-			log("Determined engine is UE425");
-			version = EVersion::UE425;
-			UE425::UObjectProcessEventOffset = 0x42;
-		}
-		else {
-			log("Determined engine is UE500");
-			version = EVersion::UE500;
-			UE425::UObjectProcessEventOffset = 0x4B;
-		}
-	} else if(
-		memory.retrieveSymbol<UE503::FUObjectArray>("48 8B 05 * * * * 48 8B 0C C8 48 8D 04 D1 EB", -0x10) &&
-		memory.retrieveSymbol<UE503::FNamePool>("48 8D 15 * * * * EB 16 48 8D 0D")
-	) {
-		// Loaded FUObjectArray and FNamePool for either UE425 or UE500
-		log("Found FUObjectArray and FNamePool address.");
-		log("Determined engine is UE503");
-		version = EVersion::UE503;
+	if (objects.NumChunks <= 0 || objects.NumChunks > 256)
+		return false;
 
-		objectArray.load(memory.getSymbol<UE503::FUObjectArray>());
-		UE503::NamePoolData = memory.getSymbol<UE503::FNamePool>();
+	if (objects.NumElements > 0 && !isReadable(objects.Objects, sizeof(UE503::FUObjectItem*)))
+		return false;
 
-	} else {
-		log("Could not find FUObjectArray and FNamePool address.");
+	return true;
+}
+
+bool Injector::validateUE503NamePool(UE503::FNamePool* pool) {
+	if (!isReadable(pool, sizeof(UE503::FNamePool)))
+		return false;
+
+	auto& entries = pool->Entries;
+	if (entries.CurrentBlock > 8191)
+		return false;
+
+	return true;
+}
+
+bool Injector::validateUE425ObjectArray(UE425::FUObjectArray* arr) {
+	if (!isReadable(arr, sizeof(UE425::FUObjectArray)))
+		return false;
+
+	auto& objects = arr->ObjObjects;
+	if (objects.NumElements < kMinObjectCount || objects.NumElements > kMaxObjectCount)
+		return false;
+
+	if (objects.MaxElements < objects.NumElements)
+		return false;
+
+	return true;
+}
+
+bool Injector::validateUE425NamePool(UE425::FNamePool* pool) {
+	return isReadable(pool, sizeof(UE425::FNamePool));
+}
+
+bool Injector::tryLoadUE503() {
+	const auto objectSig = "48 8B 05 * * * * 48 8B 0C C8 48 8D 04 D1 EB";
+	const auto namePoolSig = "48 8D 15 * * * * EB 16 48 8D 0D";
+
+	log("Trying UE 5.03 layout (Railroads Online UE5)...");
+
+	if (!memory.retrieveSymbol<UE503::FUObjectArray>(objectSig, -0x10, validateUE503ObjectArray)) {
+		log("UE503: FUObjectArray pattern not found or failed validation.");
 		return false;
 	}
 
-	ReadyMessage readyMsg;
-	readyMsg.Send();
+	log("UE503: FUObjectArray resolved.");
 
-	processMessages();
+	if (!memory.retrieveSymbol<UE503::FNamePool>(namePoolSig, 0, validateUE503NamePool)) {
+		log("UE503: FNamePool pattern not found or failed validation.");
+		memory.unregisterSymbol<UE503::FUObjectArray>();
+		return false;
+	}
+
+	log("UE503: FNamePool resolved.");
+	log("Determined engine is UE503");
+
+	version = EVersion::UE503;
+	objectArray.load(memory.getSymbol<UE503::FUObjectArray>());
+	UE503::NamePoolData = memory.getSymbol<UE503::FNamePool>();
+	return true;
+}
+
+bool Injector::tryLoadUE425() {
+	const auto objectSig = "48 8B 05 * * * * 48 8B 0C C8 48 8D 04 D1 EB";
+	const auto namePoolSig = "48 8D 35 * * * * EB 16";
+
+	log("Trying UE 4.25 / 5.0 layout...");
+
+	if (!memory.retrieveSymbol<UE425::FUObjectArray>(objectSig, -0x10, validateUE425ObjectArray)) {
+		log("UE425: FUObjectArray pattern not found or failed validation.");
+		return false;
+	}
+
+	if (!memory.retrieveSymbol<UE425::FNamePool>(namePoolSig, 0, validateUE425NamePool)) {
+		log("UE425: FNamePool pattern not found or failed validation.");
+		memory.unregisterSymbol<UE425::FUObjectArray>();
+		return false;
+	}
+
+	log("Found FUObjectArray and FNamePool for UE425 or UE500.");
+
+	objectArray.load(memory.getSymbol<UE425::FUObjectArray>());
+	UE425::NamePoolData = memory.getSymbol<UE425::FNamePool>();
+
+	uint32_t version_offset = determineVersionOffset();
+
+	if (version_offset == 0xA4) {
+		log("Determined engine is UE425");
+		version = EVersion::UE425;
+		UE425::UObjectProcessEventOffset = 0x42;
+	}
+	else {
+		log("Determined engine is UE500");
+		version = EVersion::UE500;
+		UE425::UObjectProcessEventOffset = 0x4B;
+	}
 
 	return true;
+}
+
+bool Injector::load() {
+	if (tryLoadUE503()) {
+		ReadyMessage readyMsg;
+		readyMsg.Send();
+		log("RROx ready (UE503).");
+		processMessages();
+		return true;
+	}
+
+	if (tryLoadUE425()) {
+		ReadyMessage readyMsg;
+		readyMsg.Send();
+		log("RROx ready (UE425/UE500).");
+		processMessages();
+		return true;
+	}
+
+	log("Could not find validated FUObjectArray and FNamePool. Detaching without touching game objects.");
+	return false;
 }
 
 void Injector::stop() {
@@ -95,14 +191,14 @@ uint32_t Injector::determineVersionOffset() {
 		}
 	}
 
-	// Tried to distinguish between version values, but turns out, even in UE4, version = 5 (at least in current RailroadsOnline)
-	// But turns out the offset is different, so that works :)
 	return version_offset;
 }
 
 void Injector::log(std::string message) {
-	LogMessage msg = LogMessage(message);
+	if (!communicator.IsConnected())
+		communicator.Connect();
 
+	LogMessage msg = LogMessage(message);
 	msg.Send();
 }
 
@@ -134,9 +230,7 @@ void Injector::processMessages() {
 
 		auto message = communicator.Read(size);
 		MessageType type = message.Read<MessageType>();
-		message.SetOffset(0); // Reset read position back to 0
-
-		//log("Received message of type " + std::to_string(static_cast<uint16_t>(type)));
+		message.SetOffset(0);
 
 		switch (type) {
 		case MessageType::GET_STRUCT: {
@@ -185,5 +279,4 @@ void Injector::processMessages() {
 	}
 }
 
-/** Global reference to injector class */
 Injector injector;

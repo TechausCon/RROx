@@ -1,5 +1,5 @@
 import { useWorld } from "@rrox-plugins/world/renderer";
-import { IWorld } from "@rrox-plugins/world/shared";
+import { IWorldEntityKey } from "@rrox-plugins/world/shared";
 import L from "leaflet";
 import { useEffect } from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -17,7 +17,7 @@ export function useLocate( map?: L.Map ) {
         if( !location.state?.locate || !data || !map )
             return;
         
-        const { type, index } = location.state.locate as { type: keyof IWorld, index: number };
+        const { type, index } = location.state.locate as { type: IWorldEntityKey, index: number };
         const item = data[ type ]?.[ index ];
 
         if( !item || !item.location )

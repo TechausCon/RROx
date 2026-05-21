@@ -1,5 +1,4 @@
 import { InOutParam, Property, Struct, StructInfo } from "@rrox/api";
-import { FVector } from "../CoreUObject/Vector";
 import { AGameStateBase } from "../Engine/GameStateBase";
 import { Aframecar } from "./framecar";
 import { Aindustry } from "./industry";
@@ -16,41 +15,9 @@ export class AarrGameStateBase extends AGameStateBase {
         struct.apply( this );
     }
 
-    /**
-     * An array containing:
-     * String property
-     */
-    @Property.Array( "playerIdArray", [] )
-    public playeridarray: Array<string>;
-    
-    /**
-     * An array containing:
-     * String property
-     */
-    @Property.Array( "playerNameArray", [] )
-    public playernamearray: Array<string>;
-    
-    /**
-     * An array containing:
-     * Struct property
-     */
-    @Property.Array( "playerLocationArray", [ () => FVector ] )
-    public playerlocationarray: Array<FVector>;
-    
-    /**
-     * An array containing:
-     * Float number property
-     */
-    @Property.Array( "playerMoneyArray", [] )
-    public playermoneyarray: Array<float>;
-    
-    /**
-     * An array containing:
-     * 32-bit int number property
-     */
-    @Property.Array( "playerXpArray", [] )
-    public playerxparray: Array<int32>;
-    
+    // Player id/name/location/money/xp arrays were removed from ARRGameStateBase in newer game builds.
+    // Players are read via GameStateBase.PlayerArray instead.
+
     /**
      * An array containing:
      * Object property

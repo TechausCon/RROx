@@ -17,7 +17,15 @@ export interface IWorld {
     industries: IIndustry[];
     splines: ISpline[];
     splineTracks: ISplineTrack[];
+    session: {
+        /** True when this game instance is server/host (industry cheats affect in-game state). */
+        isServer: boolean;
+        /** Client: industry amounts from server replication; false = local scan (may differ from game). */
+        industryStorageSynced: boolean;
+    };
 }
+
+export type IWorldEntityKey = Exclude<keyof IWorld, 'session'>;
 
 export * from './enums';
 export * from './frameCar';

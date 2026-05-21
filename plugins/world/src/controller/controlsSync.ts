@@ -1,12 +1,12 @@
-import { Actions, IPluginController } from "@rrox/api";
+import { Actions } from "@rrox/api";
 import WorldPlugin from ".";
-import { FrameCarControl, getCoupledFrames, ICheats, isEngine } from "../shared";
+import { FrameCarControl, getCoupledFrames, isEngine } from "../shared";
 import { Structs } from "./structs/types";
 
 export class ControlsSynchronizer {
     public synchronizedEngines: Structs.Aframecar[] = [];
 
-    private interval: NodeJS.Timeout;
+    private interval: NodeJS.Timeout | undefined;
 
     constructor( private plugin: WorldPlugin ) {}
 
@@ -15,51 +15,55 @@ export class ControlsSynchronizer {
 
         const data = this.plugin.controller.getAction( Actions.QUERY );
 
-        setInterval( async () => {
-            // We copy the array such that we can make changes to it
+        this.interval = setInterval( async () => {
             const engines = [ ...this.synchronizedEngines ];
-            
             const ignoredFrames: number[] = [];
-            
             const world = this.plugin.world.valueProvider.getValue();
             if( !world )
                 return;
 
-            for( let engine of engines ) {
+            for( const engine of engines ) {
+                if( !this.synchronizedEngines.some( ( e ) => data.equals( e, engine ) ) )
+                    continue;
+
                 const index = this.plugin.world.data.frameCars.findIndex( ( fc ) => data.equals( fc, engine ) );
-                if( index < 0 || ignoredFrames.includes( index ))
+                if( index < 0 || ignoredFrames.includes( index ) )
                     continue;
 
                 const frame = world.frameCars[ index ];
-
-                const coupledFrames = getCoupledFrames(
-                    frame,
-                    index,
-                    world.frameCars,
-                );
+                const coupledFrames = getCoupledFrames( frame, index, world.frameCars );
+                let demotedSelf = false;
 
                 for( const coupled of coupledFrames ) {
-                    if( !isEngine( coupled.frame ) || coupled.frame === frame || !coupled.isCoupled )
+                    if( !isEngine( coupled.frame ) || coupled.index === index || !coupled.isCoupled )
                         continue;
-                    
-                    const gameObj = this.plugin.world.data.frameCars[ coupled.index ];
 
-                    if( coupled.frame.syncedControls ) {
-                        // Two coupled engines can not have synced controls at the same time.
+                    const gameObj = this.plugin.world.data.frameCars[ coupled.index ];
+                    const coupledIsMaster = this.synchronizedEngines.some( ( e ) => data.equals( e, gameObj ) );
+
+                    if( coupled.frame.syncedControls && coupledIsMaster ) {
+                        // Only one master per consist — lower frame index wins.
+                        if( coupled.index < index ) {
+                            this.removeEngine( engine );
+                            ignoredFrames.push( index );
+                            demotedSelf = true;
+                            break;
+                        }
+
                         this.removeEngine( gameObj );
-    
-                        // Ignore the frame, to make sure we are not double overwriting things
-                        // Next world read, the synccontrols will be set correctly
                         ignoredFrames.push( coupled.index );
                     }
 
+                    if( demotedSelf )
+                        break;
+
                     if( frame.controls.regulator === undefined || frame.controls.reverser === undefined )
                         continue;
-    
+
                     const regulator = frame.controls.regulator;
-                    const reverser  = coupled.flipped ? frame.controls.reverser * -1 : frame.controls.reverser;
-                    const brake     = frame.controls.brake;
-    
+                    const reverser = coupled.flipped ? frame.controls.reverser * -1 : frame.controls.reverser;
+                    const brake = frame.controls.brake;
+
                     if( coupled.frame.controls.regulator !== undefined && Math.abs( regulator - coupled.frame.controls.regulator ) > 0.005 )
                         await this.plugin.world.setControls( gameObj, FrameCarControl.Regulator, regulator );
                     if( coupled.frame.controls.reverser !== undefined && Math.abs( reverser - coupled.frame.controls.reverser ) > 0.005 )
@@ -72,7 +76,10 @@ export class ControlsSynchronizer {
     }
 
     public stop() {
-        clearInterval( this.interval );
+        if( this.interval !== undefined ) {
+            clearInterval( this.interval );
+            this.interval = undefined;
+        }
     }
 
     public addEngine( engine: Structs.Aframecar ) {

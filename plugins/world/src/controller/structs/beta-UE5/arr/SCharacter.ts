@@ -1,5 +1,6 @@
 import { InOutParam, Property, Struct, StructInfo } from "@rrox/api";
 import { ACharacter } from "../Engine/Character";
+import { UCharacterMovementComponent } from "../Engine/CharacterMovementComponent";
 import { Aairbrake } from "./airbrake";
 import { Ahandvalve } from "./handvalve";
 import { Ajohnsonbar } from "./johnsonbar";
@@ -9,6 +10,10 @@ import { ASwitch } from "./Switch";
 import { Awhistle } from "./whistle";
 import { Acrane } from "./crane";
 import { Achute } from "./chute";
+import { AFreight } from "./freight";
+import { Astorage } from "./storage";
+import { EUnloadSide } from "./eunloadside";
+import { AActor } from "../Engine/Actor";
 
 @Struct( "Class arr.SCharacter" )
 export class ASCharacter extends ACharacter {
@@ -17,7 +22,9 @@ export class ASCharacter extends ACharacter {
         super( struct );
         struct.apply( this );
     }
-    
+
+    @Property.Object( "CharacterMovement", () => UCharacterMovementComponent )
+    public CharacterMovement: UCharacterMovementComponent;
     
     /**
      * A `float` number property (contains decimal digits).
@@ -122,5 +129,15 @@ export class ASCharacter extends ACharacter {
      */
     @Property.Function( "Function arr.SCharacter.ServerUseChute", [ [ () => Achute ], [], [] ] )
     public ServerUseChute: ( chute: Achute, inputX: float, inputY: float ) => Promise<void>;
-	
+
+    /** dump: Storage + int amount (remove; negative amount = research). */
+    @Property.Function( "Function arr.SCharacter.ServerRemoveFreight", [ [ () => Astorage ], [] ] )
+    public ServerRemoveFreight: ( Storage: Astorage, amount: int32 ) => Promise<void>;
+
+    @Property.Function( "Function arr.SCharacter.ServerToggleFreightLoading", [ [ () => AActor ] ] )
+    public ServerToggleFreightLoading: ( interactiveActor: AActor ) => Promise<void>;
+
+    @Property.Function( "Function arr.SCharacter.ServerUseFreight", [ [ () => AFreight ], [], [] ] )
+    public ServerUseFreight: ( Freight: AFreight, side: EUnloadSide, playerUnloaderName: string ) => Promise<void>;
+
 }

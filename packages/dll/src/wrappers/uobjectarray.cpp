@@ -4,6 +4,20 @@
 #include "../UE/v503/uobjectarray.h"
 #include "./uobject.h"
 
+namespace {
+	template <typename TArray>
+	int32_t safeObjectCount(TArray* objectArr) {
+		if (!objectArr || IsBadReadPtr(objectArr, sizeof(*objectArr)))
+			return 0;
+
+		const int32_t numElements = objectArr->ObjObjects.NumElements;
+		if (numElements <= 0 || numElements > 8'000'000)
+			return 0;
+
+		return numElements;
+	}
+}
+
 WFUObjectItem WFUObjectArray::FindObject(const std::string& name) {
 	std::string nameLowerCase = name;
 	std::transform(nameLowerCase.begin(), nameLowerCase.end(), nameLowerCase.begin(), ::tolower);
@@ -35,7 +49,11 @@ WFUObjectItem WFUObjectArray::FindObject(const std::string& name) {
 	}
 
 	return std::visit([this, nameLowerCase](auto&& objArray) -> WFUObjectItem {
-		for (int32_t i = 0; i < objArray->ObjObjects.NumElements; i++) {
+		const int32_t numElements = safeObjectCount(objArray);
+		if (numElements == 0)
+			return {};
+
+		for (int32_t i = 0; i < numElements; i++) {
 			auto item = objArray->ObjObjects.GetObjectPtr(i);
 
 			if (item && item->Object) {
@@ -103,7 +121,8 @@ std::vector<WFUObjectItem> WFUObjectArray::FindInstances(const WUObject objW, co
 
 		auto obj = std::get<UObjectPtr>(objV);
 
-		for (int32_t i = 0; i < objectArr->ObjObjects.NumElements; i++) {
+		const int32_t numElements = safeObjectCount(objectArr);
+		for (int32_t i = 0; i < numElements; i++) {
 			auto item = objectArr->ObjObjects.GetObjectPtr(i);
 
 			if (item && item->Object && obj) {
@@ -135,7 +154,8 @@ std::vector<std::tuple<WUObject, WFUObjectItem>> WFUObjectArray::FindInstances(c
 				objs.push_back(std::get<UObjectPtr>(objV));
 		}
 
-		for (int32_t i = 0; i < objectArr->ObjObjects.NumElements; i++) {
+		const int32_t numElements = safeObjectCount(objectArr);
+		for (int32_t i = 0; i < numElements; i++) {
 			auto item = objectArr->ObjObjects.GetObjectPtr(i);
 
 			if (item && item->Object) {
@@ -166,7 +186,8 @@ WFUObjectItem WFUObjectArray::FindStatic(const WUObject objW) {
 
 		auto obj = std::get<UObjectPtr>(objV);
 
-		for (int32_t i = 0; i < objectArr->ObjObjects.NumElements; i++) {
+		const int32_t numElements = safeObjectCount(objectArr);
+		for (int32_t i = 0; i < numElements; i++) {
 			auto item = objectArr->ObjObjects.GetObjectPtr(i);
 
 			if (item && item->Object && obj) {
@@ -187,7 +208,8 @@ std::vector<std::string> WFUObjectArray::GetNames() {
 	return std::visit([](auto&& objectArr) -> std::vector<std::string> {
 		std::vector<std::string> names;
 
-		for (int32_t i = 0; i < objectArr->ObjObjects.NumElements; i++) {
+		const int32_t numElements = safeObjectCount(objectArr);
+		for (int32_t i = 0; i < numElements; i++) {
 			auto item = objectArr->ObjObjects.GetObjectPtr(i);
 			if (item->Object != nullptr) {
 				names.push_back(item->Object->GetFullName());

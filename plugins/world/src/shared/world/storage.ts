@@ -10,4 +10,6 @@ export interface IStorage {
     cranes: ICrane[];
     location: ILocation;
     rotation: IRotation;
+    /** Struct slot 0–3 on industry educt/product arrays; omitted for legacy-only slots. */
+    slotIndex?: number;
 }

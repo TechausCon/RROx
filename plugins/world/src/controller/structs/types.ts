@@ -4,6 +4,7 @@ import * as BetaStructs from './beta-UE5';
 export namespace Structs {
     export type UWorld = MainStructs.Engine.UWorld | BetaStructs.Engine.UWorld;
     export type UGameEngine = MainStructs.Engine.UGameEngine | BetaStructs.Engine.UGameEngine;
+    export type UGameViewportClient = MainStructs.Engine.UGameViewportClient | BetaStructs.Engine.UGameViewportClient;
     export type UKismetSystemLibrary = MainStructs.Engine.UKismetSystemLibrary | BetaStructs.Engine.UKismetSystemLibrary;
     export type UNetConnection = MainStructs.Engine.UNetConnection | BetaStructs.Engine.UNetConnection;
     export type UActorChannel = MainStructs.Engine.UActorChannel | BetaStructs.Engine.UActorChannel;
@@ -17,14 +18,20 @@ export namespace Structs {
     export type Asandhouse = MainStructs.arr.Asandhouse | BetaStructs.arr.Asandhouse;
     export type Aindustry = MainStructs.arr.Aindustry | BetaStructs.arr.Aindustry;
     export type ASplineActor = MainStructs.arr.ASplineActor | BetaStructs.arr.ASplineActor;
+    export type ASplineActorLive = BetaStructs.arr.ASplineActorLive;
     export type ASplineTrack = MainStructs.arr.ASplineTrack | BetaStructs.arr.ASplineTrack;
     export type AarrGameStateBase = MainStructs.arr.AarrGameStateBase | BetaStructs.arr.AarrGameStateBase;
     export type FVector = MainStructs.CoreUObject.FVector | BetaStructs.CoreUObject.FVector;
     export type FRotator = MainStructs.CoreUObject.FRotator | BetaStructs.CoreUObject.FRotator;
     export type Astorage = MainStructs.arr.Astorage | BetaStructs.arr.Astorage;
+    export type AFreight = MainStructs.arr.AFreight | BetaStructs.arr.AFreight;
+    export type Atender = MainStructs.arr.Atender | BetaStructs.arr.Atender;
+    export type Aboiler = MainStructs.arr.Aboiler | BetaStructs.arr.Aboiler;
+    export type Acompressor = MainStructs.arr.Acompressor | BetaStructs.arr.Acompressor;
     export type Acoupler = MainStructs.arr.Acoupler | BetaStructs.arr.Acoupler;
     export type Acrane = MainStructs.arr.Acrane | BetaStructs.arr.Acrane;
     export type ASCharacter = MainStructs.arr.ASCharacter | BetaStructs.arr.ASCharacter;
+    export type AARRPlayerController = BetaStructs.arr.AARRPlayerController;
     export type APawn = MainStructs.Engine.APawn | BetaStructs.Engine.APawn;
 }
 

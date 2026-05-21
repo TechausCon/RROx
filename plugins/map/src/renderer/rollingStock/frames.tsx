@@ -3,21 +3,26 @@ import { ControlOutlined, AimOutlined } from '@ant-design/icons';
 import React from 'react';
 import { FrameDefinitions } from '../map/definitions';
 import { FrameCarType, IFrameCar } from '@rrox-plugins/world/shared';
+import { formatGameDistance } from '../map/utils/distance';
 
 export function FramesList( {
     data,
     onOpenControls,
-    onLocate
+    onLocate,
+    showDistance = false,
 }: {
-    data: { index: number, frame: IFrameCar }[],
+    data: { index: number, frame: IFrameCar, distance?: number }[] | undefined,
     onOpenControls: ( index: number ) => void,
     onLocate: ( index: number ) => void,
+    showDistance?: boolean,
 } ) {
     return <List
         itemLayout="horizontal"
-        dataSource={data}
-        renderItem={( { frame, index } ) => {
+        dataSource={data ?? []}
+        renderItem={( { frame, index, distance } ) => {
             const definition = FrameDefinitions[ frame.type ] ?? FrameDefinitions[ FrameCarType.UNKNOWN ];
+            if( !definition )
+                return null;
 
             let actions = [];
             if ( definition.engine )
@@ -40,8 +45,15 @@ export function FramesList( {
             >
                 <List.Item.Meta
                     avatar={<Avatar shape='square' className='dark-mode-invert' src={definition.image} size={100} style={{ marginTop: -25 }} />}
-                    title={`${frame.name.toUpperCase()}${frame.name && frame.number ? ' - ' : ''}${frame.number.toUpperCase() || ''}`}
-                    description={definition.engine ? <table>
+                    title={<>
+                        {`${frame.name.toUpperCase()}${frame.name && frame.number ? ' - ' : ''}${frame.number.toUpperCase() || ''}`}
+                        {showDistance && typeof distance === 'number' && (
+                            <span style={{ fontSize: 12, color: '#888', marginLeft: 8 }}>
+                                {formatGameDistance( distance )}
+                            </span>
+                        )}
+                    </>}
+                    description={definition.engine && frame.boiler ? <table>
                         <thead>
                             <tr>
                                 <th style={{ width: '30%' }}>Boiler Pressure</th>

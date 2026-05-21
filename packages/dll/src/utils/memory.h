@@ -1,5 +1,6 @@
 #pragma once
 #include <unordered_map>
+#include <functional>
 #include <Windows.h>
 #include <Psapi.h>
 #include "scanner.h"
@@ -20,6 +21,9 @@ public:
 
     template <typename T>
     bool retrieveSymbol(const std::string& sig, const int offset = 0);
+
+    template <typename T>
+    bool retrieveSymbol(const std::string& sig, const int offset, std::function<bool(T*)> validate);
 
     template <typename T>
     [[nodiscard]] T& readPointer(T* const address);
@@ -82,4 +86,44 @@ bool MemoryManager::retrieveSymbol(const std::string& sig, const int offset) {
 
     registerSymbol(reinterpret_cast<T*>(addr));
     return true;
+}
+
+template <typename T>
+bool MemoryManager::retrieveSymbol(const std::string& sig, const int offset, std::function<bool(T*)> validate) {
+    auto mod = GetModuleHandle(nullptr);
+    auto start = (uintptr_t)mod;
+    auto length = getModuleSize(mod).value_or(0);
+
+    if (start == 0 || length == 0)
+        return false;
+
+    Scanner s{ sig };
+    uintptr_t after = start - 1;
+    int attempts = 0;
+
+    while (attempts <= 512) {
+        auto result = s.findNext(start, length, after);
+        if (!result.has_value())
+            break;
+
+        uintptr_t match = result.value();
+        after = match;
+        attempts++;
+
+        auto k = 0;
+        for (; s.pattern[k] >= 0 && k < s.pattern.size(); k++);
+        uintptr_t addr = match + k + 4 + *reinterpret_cast<int*>(match + k) + offset;
+        auto symbol = reinterpret_cast<T*>(addr);
+
+        if (validate(symbol)) {
+            registerSymbol(symbol);
+            return true;
+        }
+
+        if (attempts > 512)
+            break;
+    }
+
+    unregisterSymbol<T>();
+    return false;
 }

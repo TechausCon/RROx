@@ -4,6 +4,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Tabs } from "antd";
 import { PlayerList } from "./players";
+import { AttachHintBanner } from "../map/components";
 
 export function PlayersListPage() {
     const navigate = useNavigate();
@@ -24,8 +25,9 @@ export function PlayersListPage() {
     return (
         <PageLayout>
             <PageContent style={{ maxWidth: 1200 }}>
+                <AttachHintBanner />
                 <PlayerList
-                    data={world?.players.map((player, index) => ({ player, index })) ?? []}
+                    data={( world?.players ?? [] ).map( ( player, index ) => ( { player, index } ) )}
                     onLocate={locate}
                 />
             </PageContent>

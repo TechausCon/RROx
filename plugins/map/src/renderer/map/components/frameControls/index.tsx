@@ -60,9 +60,9 @@ export function FrameControls( {
     const [ pendingSyncControls, setPendingSyncControls ] = useState<boolean | null>( null );
 
     useEffect( () => {
-        if ( pendingSyncControls !== null && pendingSyncControls === data.syncedControls )
+        if( pendingSyncControls !== null && pendingSyncControls === selectedData.syncedControls )
             setPendingSyncControls( null );
-    }, [ pendingSyncControls, data.syncedControls ] );
+    }, [ pendingSyncControls, selectedData.syncedControls ] );
 
     const [ controls, setControls ] = useState<{
         regulator?: number,

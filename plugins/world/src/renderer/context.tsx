@@ -22,6 +22,7 @@ export function WorldProvider( { children }: { children?: React.ReactNode } ) {
             turntables: world?.turntables ?? [],
             watertowers: world?.watertowers ?? [],
             splineTracks: world?.splineTracks ?? [],
+            session: world?.session ?? { isServer: false, industryStorageSynced: true },
         };
 
         // console.log( fullWorld );

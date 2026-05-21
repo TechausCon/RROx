@@ -1,4 +1,4 @@
-import { ChangeSwitchCommunicator, IWorldSettings, SetControlsCommunicator, SetPlayerCheats, TeleportCommunicator, WorldSettings, FramecarResetCommunicator } from "@rrox-plugins/world/shared";
+import { AddStorageCheats, ChangeSwitchCommunicator, IWorldSettings, SetControlsCommunicator, SetPlayerCheats, TeleportCommunicator, WorldSettings, FramecarResetCommunicator } from "@rrox-plugins/world/shared";
 import { useHasCommunicatorAccess, useSettings } from "@rrox/api";
 import { useMemo } from "react";
 
@@ -8,6 +8,7 @@ export function useMapSettings() {
     const canTeleport = useHasCommunicatorAccess( TeleportCommunicator );
     const canControlEngines = useHasCommunicatorAccess( SetControlsCommunicator );
     const canCheat = useHasCommunicatorAccess( SetPlayerCheats );
+    const canStorageCheat = useHasCommunicatorAccess( AddStorageCheats );
     const canSetSwitch = useHasCommunicatorAccess( ChangeSwitchCommunicator );
 	const canResetFramecars = useHasCommunicatorAccess( FramecarResetCommunicator );
     
@@ -20,9 +21,10 @@ export function useMapSettings() {
                 controlEngines: worldSettings.features.controlEngines && canControlEngines,
                 teleport: worldSettings.features.teleport && canTeleport,
                 cheats: worldSettings.features.cheats && canCheat,
+                storageCheats: worldSettings.features.cheats && canStorageCheat,
                 controlSwitches: worldSettings.features.controlSwitches && canSetSwitch,
 				resetFramecars: canResetFramecars,
             }
         }
-    }, [ worldSettings, canTeleport, canControlEngines, canCheat, canSetSwitch ] );
+    }, [ worldSettings, canTeleport, canControlEngines, canCheat, canStorageCheat, canSetSwitch, canResetFramecars ] );
 }
